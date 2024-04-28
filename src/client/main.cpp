@@ -1,20 +1,26 @@
-#include <QCoreApplication>
-#include <QTextStream>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 #include <iostream>
 #include <string>
-
-void QTHelloWorld(){
-  QTextStream qtin(stdin);
-  QTextStream qtout(stdout);
-
-  qtout << "Hello, whats your name?\n";
-  qtout.flush();
-  QString name = qtin.readLine();
-  qtout << "Hello " << name << "\n";
-  qtout.flush();
-}
+#include "OpenGl/GLFW.cpp"
+#include "OpenGl/Window.cpp"
 
 int main() {
-  QTHelloWorld();
-  return 0;
+  try {
+    GLFW glfw;
+    Window window;
+
+    window.select();
+    gladLoadGL();
+    window.setFullViewPort(&window);
+    window.setClearColor(1, 1, 1, 1);
+    Window::clear();
+    window.swapBuffer();
+
+    while (window.shouldClose()) {
+      glfwPollEvents();
+    }
+  } catch (std::string error) {
+    std::cout << error << "\n";
+  }
 }
