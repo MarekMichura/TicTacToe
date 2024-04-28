@@ -1,8 +1,7 @@
-#include <iostream>
-#include <string>
-
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <iostream>
+#include <string>
 
 #include "OpenGl/GLFW.cpp"
 #include "OpenGl/Obj/Triangle.cpp"
@@ -17,31 +16,36 @@ extern const char* vertexShaderSource;
 
 int main() {
   try {
+    // init glfw
     GLFW glfw;
+    // create window
     Window window;
 
-    // shader
-
+    // select window
     window.select();
+    // use glad
     gladLoadGL();
+    // use full viewport context
     window.setFullViewPort(&window);
-    window.setClearColor(1, 1, 1, 1);
-    Window::clear();
-    window.swapBuffer();
-    // Shader shader;
-    Shader vertexShader(fragmentShaderSource, GL_VERTEX_SHADER);
-    Shader fragmentShader(fragmentShaderSource, GL_FRAGMENT_SHADER);
+
+    // create program
     ShaderProgram program;
-    program.attach(&vertexShader);
-    program.attach(&fragmentShader);
+    {
+      // create vertex shader
+      Shader vertexShader(vertexShaderSource, GL_VERTEX_SHADER);
+      // create fragment shade
+      Shader fragmentShader(fragmentShaderSource, GL_FRAGMENT_SHADER);
+      // attach shaders to program
+      program.attach(&vertexShader);
+      program.attach(&fragmentShader);
+    }
     program.link();
 
     Triangle t;
-    // GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    // glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-    // glCompileShader(vertexShader);
 
     while (window.shouldClose()) {
+      window.setClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+
       window.clear();
       program.use();
 

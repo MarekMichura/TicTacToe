@@ -1,5 +1,6 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <iostream>
 #include <string>
 
 class Shader {
@@ -7,7 +8,7 @@ private:
   GLuint ID;
 
 public:
-  Shader(const char* source, int type) {
+  Shader(const char* source, GLenum type) {
     ID = glCreateShader(type);
     glShaderSource(ID, 1, &source, NULL);
     glCompileShader(ID);

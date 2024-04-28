@@ -4,11 +4,11 @@
 
 class Window {
 private:
-  GLFWwindow* window;
   int width;
   int height;
 
 public:
+  GLFWwindow* window;
   Window(int width = 1200, int height = 600, std::string title = "Window title") {
     this->width = width;
     this->height = height;
