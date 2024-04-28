@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.28)
-project(TicTacToe)
+project(TicTacToe CXX)
 
 # compillation flags
 # -lstdc+ -Ofast
@@ -43,6 +43,9 @@ FetchContent_MakeAvailable(glad)
 
 # find_package(QT NAMES Qt6 Qt5 COMPONENTS Core REQUIRED)
 # find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
+
+# Static files
+include_directories(${CMAKE_BINARY_DIR}/_deps/src/)
 
 # directory
 add_subdirectory(src/lib)

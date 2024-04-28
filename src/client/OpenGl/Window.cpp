@@ -18,31 +18,17 @@ public:
     }
   }
 
-  ~Window() {
-    glfwDestroyWindow(window);
-  }
+  ~Window() { glfwDestroyWindow(window); }
 
-  void select() {
-    glfwMakeContextCurrent(window);
-  }
+  void select() { glfwMakeContextCurrent(window); }
 
-  void swapBuffer() {
-    glfwSwapBuffers(window);
-  }
+  void swapBuffer() { glfwSwapBuffers(window); }
 
-  bool shouldClose() {
-    return !glfwWindowShouldClose(window);
-  }
+  bool shouldClose() { return !glfwWindowShouldClose(window); }
 
-  static void setFullViewPort(Window* window) {
-    glViewport(0, 0, window->width, window->height);
-  }
+  static void setFullViewPort(Window* window) { glViewport(0, 0, window->width, window->height); }
 
-  static void setClearColor(float red, float green, float blue, float alpha) {
-    glClearColor(red, green, blue, alpha);
-  }
+  static void setClearColor(float red, float green, float blue, float alpha) { glClearColor(red, green, blue, alpha); }
 
-  static void clear() {
-    glClear(GL_COLOR_BUFFER_BIT);
-  }
+  static void clear() { glClear(GL_COLOR_BUFFER_BIT); }
 };
