@@ -7,4 +7,5 @@ AllowShortIfStatementsOnASingleLine: Never
 IndentCaseLabels: true
 AccessModifierOffset: -2
 SortIncludes: CaseInsensitive
-ColumnLimit: 0
+BreakBeforeBraces: Stroustrup
+# ColumnLimit: 0

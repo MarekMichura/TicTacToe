@@ -4,11 +4,13 @@ project(TicTacToe CXX)
 # compillation flags
 # -lstdc+ -Ofast
 set(FLAGS
-  -Wall
-  -Wextra
-  -Werror
-  -pedantic
-  -Wconversion)
+
+  # -Wall
+  # -Wextra
+  # -Werror
+  # -pedantic
+  # -Wconversion
+)
 
 include(FetchContent)
 
@@ -48,5 +50,5 @@ FetchContent_MakeAvailable(glad)
 include_directories(${CMAKE_BINARY_DIR}/_deps/src/)
 
 # directory
-add_subdirectory(src/lib)
+# add_subdirectory(src/lib)
 add_subdirectory(src/client)

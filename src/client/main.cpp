@@ -1,62 +1,61 @@
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
 #include <iostream>
-#include <string>
-
-#include "OpenGl/GLFW.cpp"
-#include "OpenGl/Obj/Triangle.cpp"
-#include "OpenGl/Shader.cpp"
-#include "OpenGl/Window.cpp"
+#include "src/glfw.hpp"
+#include "src/shader.hpp"
+#include "src/vertexArray.hpp"
+#include "src/vertexBuffer.hpp"
+#include "src/window.hpp"
 
 #include "fragmentShader.h"
+// #include "obj/myFirstObj.cpp"
+#include "src/pipeline.hpp"
 #include "vertexShader.h"
-
 extern const char* fragmentShaderSource;
 extern const char* vertexShaderSource;
+const float myFirstObj[]{
+    0.0f,  0.5f,   //
+    0.5f,  -0.5f,  //
+    -0.5f, -0.5f,  //
+    -0.5f, 0.0f    //
+};
 
-int main() {
+int main()
+{
   try {
-    // init glfw
-    GLFW glfw;
-    // create window
-    Window window;
-
-    // select window
+    GLFW glfw(4, 5);
+    Window window(1920, 1080, "Window tittle");
     window.select();
-    // use glad
+
     gladLoadGL();
-    // use full viewport context
-    window.setFullViewPort(&window);
+    window.setClearColor(0.1f, 0.1f, 0.1f, 1.f);
 
-    // create program
-    ShaderProgram program;
-    {
-      // create vertex shader
-      Shader vertexShader(vertexShaderSource, GL_VERTEX_SHADER);
-      // create fragment shade
-      Shader fragmentShader(fragmentShaderSource, GL_FRAGMENT_SHADER);
-      // attach shaders to program
-      program.attach(&vertexShader);
-      program.attach(&fragmentShader);
-    }
-    program.link();
+    VertexArray vao(1);
+    VertexBuffer vbo(1);
+    vbo.sendData(myFirstObj, sizeof(myFirstObj));
+    vao.format(0, 2, &vbo);
 
-    Triangle t;
+    PipeLine pipeline(1);
+    Shader vertex(vertexShaderSource, GL_VERTEX_SHADER, "vertex: ");
+    Shader fragment(fragmentShaderSource, GL_FRAGMENT_SHADER, "fragment: ");
+    pipeline.attach(GL_VERTEX_SHADER_BIT, &vertex);
+    pipeline.attach(GL_FRAGMENT_SHADER_BIT, &fragment);
+
+    pipeline.bind();
+    vao.bind();
 
     while (window.shouldClose()) {
-      window.setClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+      if (window.getKey(GLFW_KEY_Q) == GLFW_PRESS)
+        window.close();
 
       window.clear();
-      program.use();
 
-      t.bind();
       glDrawArrays(GL_TRIANGLES, 0, 3);
-
       window.swapBuffer();
 
       glfwPollEvents();
     }
-  } catch (std::string error) {
+  }
+  catch (std::string error) {
     std::cout << error << "\n";
+    return -1;
   }
 }

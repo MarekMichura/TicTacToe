@@ -1,11 +1,17 @@
 set(CLIENT_FILES
   main.cpp
-  OpenGl/Window.cpp
-  OpenGl/Shader.cpp
-  OpenGl/Obj/Triangle.cpp
-  OpenGl/GLFW.cpp
+
+  obj/myFirstObj.cpp
+
+  src/window.cpp
+  src/shader.cpp
+  src/glfw.cpp
+
+  src/pipeline.cpp
+  src/vertexArray.cpp
+  src/vertexBuffer.cpp
 )
-add_subdirectory("OpenGl/Shaders")
+add_subdirectory("Shaders")
 
 add_executable(${PROJECT_NAME}-client ${CLIENT_FILES})
 target_compile_options(${PROJECT_NAME}-client PRIVATE ${FLAGS})
