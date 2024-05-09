@@ -1,18 +1,21 @@
 #include "vertexArray.hpp"
+#include <iostream>
 
 VertexArray::VertexArray(const unsigned int size) : size(size)
 {
+  std::cout << "Create VertexArray\n";
   glCreateVertexArrays(size, &ID);
 }
 
 VertexArray::~VertexArray()
 {
+  std::cout << "Delete VertexArray\n";
   glDeleteVertexArrays(size, &ID);
 }
 
 void VertexArray::format(const unsigned id,
                          const unsigned int size,
-                         VertexBuffer* buffer)
+                         const VertexBuffer* buffer)
 {
   glEnableVertexArrayAttrib(ID, id);
   glVertexArrayAttribFormat(ID, id, 2, GL_FLOAT, GL_FALSE, 0);

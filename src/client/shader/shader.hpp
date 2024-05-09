@@ -3,18 +3,16 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <iostream>
-#include <string>
 
 class Shader {
 private:
   const GLuint ID;
 
 public:
-  Shader(const char* source, GLenum type, const std::string text = "");
+  Shader(const char* source, const GLenum type);
   ~Shader();
 
-  GLuint getID();
+  GLuint getID() const;
 };
 
 #endif

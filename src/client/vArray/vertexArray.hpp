@@ -14,7 +14,9 @@ public:
   VertexArray(const unsigned int size);
   ~VertexArray();
 
-  void format(const unsigned id, const unsigned int size, VertexBuffer* buffer);
+  void format(const unsigned id,
+              const unsigned int size,
+              const VertexBuffer* buffer);
   void bind();
 };
 

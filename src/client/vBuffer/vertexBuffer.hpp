@@ -14,7 +14,7 @@ public:
   ~VertexBuffer();
 
   void sendData(const float data[], const unsigned int size);
-  GLuint getID();
+  GLuint getID() const;
 };
 
 #endif

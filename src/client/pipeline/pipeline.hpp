@@ -14,8 +14,8 @@ public:
   PipeLine(const unsigned int size);
   ~PipeLine();
 
-  void attach(GLbitfield stage, Shader* shader);
-  void bind();
+  void attach(const GLbitfield stage, const Shader* shader) const;
+  void bind() const;
 };
 
 #endif
