@@ -5,12 +5,11 @@ project(TicTacToe CXX)
 # compillation flags
 # -lstdc+ -Ofast
 set(FLAGS
-
-  # -Wall
-  # -Wextra
-  # -Werror
-  # -pedantic
-  # -Wconversion
+  -Wall
+  -Wextra
+  -Werror
+  -pedantic
+  -Wconversion
 )
 
 include(FetchContent)

@@ -8,15 +8,13 @@
 class VertexArray {
 private:
   GLuint ID;
-  const unsigned int size;
+  const GLsizei size;
 
 public:
-  VertexArray(const unsigned int size);
+  VertexArray(const GLsizei size);
   ~VertexArray();
 
-  void format(const unsigned id,
-              const unsigned int size,
-              const VertexBuffer* buffer);
+  void format(const GLuint id, const VertexBuffer* buffer);
   void bind();
 };
 

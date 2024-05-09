@@ -7,13 +7,13 @@
 class VertexBuffer {
 private:
   GLuint ID;
-  const unsigned int size;
+  const GLsizei size;
 
 public:
-  VertexBuffer(const unsigned int size);
+  VertexBuffer(const GLsizei size);
   ~VertexBuffer();
 
-  void sendData(const float data[], const unsigned int size);
+  void sendData(const float data[], const GLsizei size);
   GLuint getID() const;
 };
 

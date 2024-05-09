@@ -23,15 +23,15 @@ struct StoragePipeline {
 };
 
 struct EngineCreatePipeline {
-  const unsigned int pipelineSize = 1;
-  const unsigned int vertexArraySize = 1;
-  const unsigned int vertexBufferSize = 1;
+  const GLsizei pipelineSize = 1;
+  const GLsizei vertexArraySize = 1;
+  const GLsizei vertexBufferSize = 1;
 
   const char* fragmentShaderSource;
   const char* vertexShaderSource;
 
   const float* pipelineData;
-  const unsigned int pipelineDataSize;
+  const GLsizei pipelineDataSize;
 };
 
 #endif

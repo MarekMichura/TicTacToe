@@ -1,7 +1,7 @@
 #include "vertexBuffer.hpp"
 #include <iostream>
 
-VertexBuffer::VertexBuffer(const unsigned int size) : size(size)
+VertexBuffer::VertexBuffer(const GLsizei size) : size(size)
 {
   std::cout << "Create VertexBuffer\n";
   glCreateBuffers(size, &ID);
@@ -13,7 +13,7 @@ VertexBuffer::~VertexBuffer()
   glDeleteBuffers(size, &ID);
 }
 
-void VertexBuffer::sendData(const float data[], const unsigned int size)
+void VertexBuffer::sendData(const float data[], const GLsizei size)
 {
   glNamedBufferStorage(ID, size, data, 0);
 }

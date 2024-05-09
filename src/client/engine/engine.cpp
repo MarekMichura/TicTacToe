@@ -8,7 +8,7 @@
 #include "glfw.hpp"
 
 Engine::Engine(EngineParamConstructor p)
-    : window(p.windowParam), glfw(p.glfwParam)
+    : glfw(p.glfwParam), window(p.windowParam)
 {
   window.select();
   gladLoadGL();
@@ -33,7 +33,7 @@ size_t Engine::createPipeline(EngineCreatePipeline p)
   VertexBuffer& vbo = shared->vbo;
 
   vbo.sendData(p.pipelineData, p.pipelineDataSize);
-  vao.format(0, 2, &vbo);
+  vao.format(0, &vbo);
 
   PipeLine& pipeline = shared->pipeline;
   Shader& vertex = shared->vertex;
@@ -47,7 +47,7 @@ size_t Engine::createPipeline(EngineCreatePipeline p)
 
 void Engine::bindPipeline(size_t ID)
 {
-  auto storage = pipelines.back();
+  auto storage = pipelines[ID];
 
   storage->pipeline.bind();
   storage->vao.bind();

@@ -1,7 +1,7 @@
 #include "pipeline.hpp"
 #include <iostream>
 
-PipeLine::PipeLine(const unsigned int size) : size(size)
+PipeLine::PipeLine(const GLsizei size) : size(size)
 {
   std::cout << "create pipeline\n";
   glCreateProgramPipelines(size, &ID);
