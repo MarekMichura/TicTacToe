@@ -1,18 +1,21 @@
 #include "window.hpp"
 #include <iostream>
-#include "GLFW/glfw3.h"
+#include <GLFW/glfw3.h>
 
 GLFWwindow* createWindow(const WindowParamConstructor p)
 {
-  return glfwCreateWindow(p.windowWidth, p.windowHeight, p.windowTitle.c_str(),
-                          p.monitorToFullScreen, p.windowToShareResource);
+  GLFWwindow* win =
+      glfwCreateWindow(p.windowWidth, p.windowHeight, p.windowTitle.c_str(),
+                       p.monitorToFullScreen, p.windowToShareResource);
+
+  return win;
 }
 
 Window::Window(const WindowParamConstructor param) : win(createWindow(param))
 {
   std::cout << "trying to create window\n";
 
-  if (win == NULL) {
+  if (win == nullptr) {
     throw "Failed to create window\n";
   }
 }
@@ -56,4 +59,18 @@ bool Window::shouldClose()
 int Window::getKey(int key)
 {
   return glfwGetKey(win, key);
+}
+
+void Window::viewPort(const int width, const int height)
+{
+  glViewport(0, 0, width, height);
+  glfwSetFramebufferSizeCallback(win, Window::viewPortChange);
+}
+
+void Window::viewPortChange(GLFWwindow* window,
+                            const int width,
+                            const int height)
+{
+  std::cout << "window size change\n";
+  glViewport(0, 0, width, height);
 }

@@ -19,9 +19,15 @@ public:
   void close();
   bool shouldClose();
   int getKey(int key);
+  void viewPort(const int width, const int height);
 
   static void clear();
   static void setClearColor(Color color);
+
+private:
+  static void viewPortChange(GLFWwindow* window,
+                             const int width,
+                             const int height);
 };
 
 #endif  // !WINDOW_HPP

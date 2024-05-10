@@ -1,4 +1,8 @@
+#include <glad/glad.h>
+
 #include <iostream>
+#include <GLFW/glfw3.h>
+
 #include "engine.hpp"
 #include "shader.hpp"
 
@@ -9,21 +13,30 @@
 extern const char* fragmentShaderSource;
 extern const char* vertexShaderSource;
 
+void useEngine()
+{
+  Engine engine({});
+  engine.setBgColor();
+
+  auto id = engine.createPipeline({
+      .fragmentShaderSource = fragmentShaderSource,  //
+      .vertexShaderSource = vertexShaderSource,      //
+      .pipelineData = myFirstObj,                    //
+      .pipelineDataSize = sizeof(myFirstObj)         //
+  });
+  engine.bindPipeline(id);
+
+  engine.mainLoop();
+}
+
+extern "C" {
+__declspec(dllexport) unsigned long NvOptimusEnablement = 0x00000001;
+}
+
 int main()
 {
   try {
-    Engine engine({});
-    engine.setBgColor();
-
-    auto id = engine.createPipeline(  //
-        {
-            .fragmentShaderSource = fragmentShaderSource,  //
-            .vertexShaderSource = vertexShaderSource,      //
-            .pipelineData = myFirstObj,                    //
-            .pipelineDataSize = sizeof(myFirstObj)         //
-        });
-    engine.bindPipeline(id);
-    engine.mainLoop();
+    useEngine();
   }
   catch (char const* error) {
     std::cout << error << "\n";

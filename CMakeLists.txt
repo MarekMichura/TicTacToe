@@ -1,54 +1,39 @@
-cmake_minimum_required(VERSION 3.29.2)
+﻿# CMakeList.txt : Top-level CMake project file, do global configuration
+# and include sub-projects here.
+#
+cmake_minimum_required(VERSION 3.0)
 
-project(TicTacToe CXX)
+# Enable Hot Reload for MSVC compilers if supported.
+if(POLICY CMP0141)
+  cmake_policy(SET CMP0141 NEW)
+  set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
+endif()
 
-# compillation flags
-# -lstdc+ -Ofast
+project("TicTacToe" "CXX")
 set(FLAGS
   -Wall
-  -Wextra
-  -Werror
   -pedantic
-  -Wconversion
+
+  # -Wextra
+  # -Werror
+  # -Wconversion
 )
 
 include(FetchContent)
-
-# library for testing
-# FetchContent_Declare(
-# GoogleTest
-# GIT_REPOSITORY https://github.com/google/googletest.git
-# GIT_TAG main)
-
-# FetchContent_MakeAvailable(GoogleTest)
-# include(GoogleTest)
-
-# OpenGL
 FetchContent_Declare(
   glfw
   GIT_REPOSITORY https://github.com/glfw/glfw)
-
 FetchContent_MakeAvailable(glfw)
 
 FetchContent_Declare(
   glad
-  GIT_REPOSITORY https://github.com/Dav1dde/glad.git)
-
+  GIT_REPOSITORY https://github.com/Dav1dde/glad)
 FetchContent_MakeAvailable(glad)
 
-# QT6
-# set(CMAKE_INCLUDE_CURRENT_DIR ON)
+# FetchContent_Declare(
+# glm
+# GIT_REPOSITORY https://github.com/g-truc/glm)
+# FetchContent_MakeAvailable(glm)
 
-# set(CMAKE_AUTOUIC ON)
-# set(CMAKE_AUTOMOC ON)
-# set(CMAKE_AUTORCC ON)
-
-# find_package(QT NAMES Qt6 Qt5 COMPONENTS Core REQUIRED)
-# find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
-
-# Static files
-include_directories(${CMAKE_BINARY_DIR}/_deps/src/)
-
-# directory
-# add_subdirectory(src/lib)
-add_subdirectory(src/client)
+# Include sub-projects.
+add_subdirectory("src/client")

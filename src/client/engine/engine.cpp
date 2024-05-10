@@ -3,15 +3,18 @@
 #include "engineParam.h"
 #include "window.hpp"
 #include "engine.hpp"
-#include <cstddef>
 #include <memory>
 #include "glfw.hpp"
+#include <iostream>
 
 Engine::Engine(EngineParamConstructor p)
     : glfw(p.glfwParam), window(p.windowParam)
 {
   window.select();
   gladLoadGL();
+
+  glfwSetErrorCallback(errorCallBack);
+  window.viewPort(p.windowParam.windowWidth, p.windowParam.windowHeight);
 }
 
 void Engine::setBgColor(const Color c)
@@ -19,9 +22,16 @@ void Engine::setBgColor(const Color c)
   window.setClearColor(c);
 }
 
+void Engine::errorCallBack(int code, const char* mess)
+{
+  // const GLubyte* tmp = glGetString(GL_VENDOR);
+  std::cout << code << " -:- " << mess << "\n";
+  throw mess;
+}
+
 size_t Engine::createPipeline(EngineCreatePipeline p)
 {
-  auto shared = new StoragePipeline(                       //
+  auto shared = new StoragePipeline(
       VertexArray(p.vertexArraySize),                      //
       VertexBuffer(p.vertexBufferSize),                    //
       PipeLine(p.pipelineSize),                            //
@@ -47,7 +57,7 @@ size_t Engine::createPipeline(EngineCreatePipeline p)
 
 void Engine::bindPipeline(size_t ID)
 {
-  auto storage = pipelines[ID];
+  std::shared_ptr<StoragePipeline> storage = pipelines[ID];
 
   storage->pipeline.bind();
   storage->vao.bind();

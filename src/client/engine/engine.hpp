@@ -24,6 +24,9 @@ public:
   void bindPipeline(size_t ID);
 
   void mainLoop();
+
+private:
+  static void errorCallBack(int errorCode, const char* message);
 };
 
 #endif
