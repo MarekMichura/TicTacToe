@@ -2,8 +2,8 @@
 #define GLFW_PARAM_H
 
 struct GlfwParamConstructor {
-  int versionMajor = 4;
-  int versionMinor = 5;
+  int versionMajor = 3;
+  int versionMinor = 3;
 };
 
 #endif

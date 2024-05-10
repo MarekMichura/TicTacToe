@@ -1,11 +1,12 @@
 #ifndef ENGINE_HPP
 #define ENGINE_HPP
 
-#include <cstddef>
 #include <memory>
 #include <vector>
-#include "glfw.hpp"
+
 #include "window.hpp"
+#include "glfw.hpp"
+
 #include "engineParam.h"
 
 class Engine {

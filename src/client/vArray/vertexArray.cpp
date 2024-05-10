@@ -1,5 +1,6 @@
-#include "vertexArray.hpp"
 #include <iostream>
+
+#include "vertexArray.hpp"
 
 VertexArray::VertexArray(const GLsizei size) : size(size)
 {

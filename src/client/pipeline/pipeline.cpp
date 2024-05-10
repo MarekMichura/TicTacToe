@@ -1,5 +1,6 @@
-#include "pipeline.hpp"
 #include <iostream>
+
+#include "pipeline.hpp"
 
 PipeLine::PipeLine(const GLsizei size) : size(size)
 {

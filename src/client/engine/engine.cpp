@@ -1,11 +1,13 @@
+#include <iostream>
+#include <memory>
+
 #include "vertexBuffer.hpp"
 #include "vertexArray.hpp"
-#include "engineParam.h"
 #include "window.hpp"
 #include "engine.hpp"
-#include <memory>
 #include "glfw.hpp"
-#include <iostream>
+
+#include "engineParam.h"
 
 Engine::Engine(EngineParamConstructor p)
     : glfw(p.glfwParam), window(p.windowParam)

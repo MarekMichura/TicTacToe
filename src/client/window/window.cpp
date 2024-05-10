@@ -1,6 +1,6 @@
-#include "window.hpp"
 #include <iostream>
-#include <GLFW/glfw3.h>
+
+#include "window.hpp"
 
 GLFWwindow* createWindow(const WindowParamConstructor p)
 {

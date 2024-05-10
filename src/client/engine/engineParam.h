@@ -1,12 +1,13 @@
 #ifndef ENGINE_PARAM_H
 #define ENGINE_PARAM_H
 
-#include "glfwParam.h"
+#include "vertexBuffer.hpp"
+#include "vertexArray.hpp"
 #include "pipeline.hpp"
 #include "shader.hpp"
-#include "vertexArray.hpp"
-#include "vertexBuffer.hpp"
+
 #include "windowParam.h"
+#include "glfwParam.h"
 
 struct EngineParamConstructor {
   WindowParamConstructor windowParam;

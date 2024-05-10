@@ -1,5 +1,6 @@
-#include "shader.hpp"
 #include <iostream>
+
+#include "shader.hpp"
 
 Shader::Shader(const char* source, const GLenum type)
     : ID(glCreateShaderProgramv(type, 1, &source))

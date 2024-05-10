@@ -1,5 +1,6 @@
-#include "vertexBuffer.hpp"
 #include <iostream>
+
+#include "vertexBuffer.hpp"
 
 VertexBuffer::VertexBuffer(const GLsizei size) : size(size)
 {
