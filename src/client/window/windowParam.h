@@ -5,8 +5,8 @@
 #include <string>
 
 struct WindowParamConstructor {
-  int windowWidth = 1920;
-  int windowHeight = 1080;
+  int windowWidth = 800;
+  int windowHeight = 800;
   std::string windowTitle = "Window title";
   GLFWmonitor* monitorToFullScreen = nullptr;
   GLFWwindow* windowToShareResource = nullptr;

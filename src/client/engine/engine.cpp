@@ -1,5 +1,6 @@
 #include <iostream>
 #include <memory>
+#include <array>
 
 #include "vertexBuffer.hpp"
 #include "vertexArray.hpp"
@@ -8,6 +9,7 @@
 #include "glfw.hpp"
 
 #include "engineParam.h"
+#include "triangle.h"
 
 Engine::Engine(EngineParamConstructor p)
     : glfw(p.glfwParam), window(p.windowParam)
@@ -31,38 +33,25 @@ void Engine::errorCallBack(int code, const char* mess)
   throw mess;
 }
 
-size_t Engine::createPipeline(EngineCreatePipeline p)
+size_t Engine::createProgram(const char* sourceVertexShader, const char* sourceFragmentShader)
 {
-  auto shared = new StoragePipeline(
-      VertexArray(p.vertexArraySize),                      //
-      VertexBuffer(p.vertexBufferSize),                    //
-      PipeLine(p.pipelineSize),                            //
-      Shader(p.fragmentShaderSource, GL_FRAGMENT_SHADER),  //
-      Shader(p.vertexShaderSource, GL_VERTEX_SHADER)       //
-  );
+  Shader vertex(sourceVertexShader, GL_VERTEX_SHADER);
+  Shader fragment(sourceFragmentShader, GL_FRAGMENT_SHADER);
+  auto program = std::make_shared<Program>();
 
-  VertexArray& vao = shared->vao;
-  VertexBuffer& vbo = shared->vbo;
+  program->attach(&vertex);
+  program->attach(&fragment);
+  program->afterAttach();
 
-  vbo.sendData(p.pipelineData, p.pipelineDataSize);
-  vao.format(0, &vbo);
+  program->sendData(myFirstObj, sizeof(myFirstObj));
 
-  PipeLine& pipeline = shared->pipeline;
-  Shader& vertex = shared->vertex;
-  Shader& fragment = shared->fragment;
-  pipeline.attach(GL_VERTEX_SHADER_BIT, &vertex);
-  pipeline.attach(GL_FRAGMENT_SHADER_BIT, &fragment);
-
-  pipelines.push_back(std::shared_ptr<StoragePipeline>(shared));
-  return 0;
+  programs.push_back(program);
+  return programs.size() - 1;
 }
 
-void Engine::bindPipeline(size_t ID)
+void Engine::bindProgram(size_t ID)
 {
-  std::shared_ptr<StoragePipeline> storage = pipelines[ID];
 
-  storage->pipeline.bind();
-  storage->vao.bind();
 }
 
 void Engine::mainLoop()
@@ -72,6 +61,9 @@ void Engine::mainLoop()
       window.close();
 
     window.clear();
+
+    programs[0]->bind();
+    programs[0]->bindVAO();
 
     glDrawArrays(GL_TRIANGLES, 0, 3);
     window.swapBuffer();

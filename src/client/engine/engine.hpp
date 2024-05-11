@@ -13,16 +13,17 @@ class Engine {
 public:
   GLFW glfw;
   Window window;
-  std::vector<std::shared_ptr<StoragePipeline>> pipelines;
+  std::vector<std::shared_ptr<Program>> programs;
 
 public:
   Engine(EngineParamConstructor param);
 
   void setBgColor(Color color = COLORS::BG);
 
-  size_t createPipeline(EngineCreatePipeline param);
+  size_t createProgram(const char* sourceVertexShader,
+                       const char* sourceFragmentShader);
 
-  void bindPipeline(size_t ID);
+  void bindProgram(size_t ID);
 
   void mainLoop();
 

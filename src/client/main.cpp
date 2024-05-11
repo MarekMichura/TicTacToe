@@ -5,14 +5,13 @@
 #include "engine.hpp"
 
 #include "fragmentShader.h"
-#include "triangle.h"
 #include "vertexShader.h"
 extern const char* fragmentShaderSource;
 extern const char* vertexShaderSource;
 
-#ifdef _WIN3
+#ifdef _WIN32
 extern "C" {
-__declspec(dllexport) unsigned long NvOptimusEnablement = 0x00000001;
+    __declspec(dllexport) unsigned long NvOptimusEnablement = 0x00000001;
 }
 #endif
 
@@ -21,13 +20,11 @@ void useEngine()
   Engine engine({});
   engine.setBgColor();
 
-  auto id = engine.createPipeline({
-      .fragmentShaderSource = fragmentShaderSource,  //
-      .vertexShaderSource = vertexShaderSource,      //
-      .pipelineData = myFirstObj,                    //
-      .pipelineDataSize = sizeof(myFirstObj)         //
-  });
-  engine.bindPipeline(id);
+  auto id = engine.createProgram(
+       vertexShaderSource,
+       fragmentShaderSource  
+  );
+  engine.bindProgram(id);
 
   engine.mainLoop();
 }
