@@ -1,7 +1,7 @@
 ﻿# CMakeList.txt : Top-level CMake project file, do global configuration
 # and include sub-projects here.
 #
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
 # Enable Hot Reload for MSVC compilers if supported.
 if(POLICY CMP0141)
@@ -11,9 +11,9 @@ endif()
 
 project("TicTacToe" "CXX")
 set(FLAGS
-  -Wall
-  -pedantic
 
+  # -Wall
+  # -pedantic
   # -Wextra
   # -Werror
   # -Wconversion

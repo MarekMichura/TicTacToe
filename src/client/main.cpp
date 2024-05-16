@@ -1,32 +1,26 @@
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
 #include <iostream>
+#include <memory>
 
 #include "engine.hpp"
-
-#include "fragmentShader.h"
-#include "vertexShader.h"
-extern const char* fragmentShaderSource;
-extern const char* vertexShaderSource;
+#include "square.hpp"
+#include "triangle.hpp"
 
 #ifdef _WIN32
 extern "C" {
-    __declspec(dllexport) unsigned long NvOptimusEnablement = 0x00000001;
+__declspec(dllexport) unsigned long NvOptimusEnablement = 0x00000001;
 }
 #endif
 
 void useEngine()
 {
-  Engine engine({});
-  engine.setBgColor();
+  gl::Engine engine;
 
-  auto id = engine.createProgram(
-       vertexShaderSource,
-       fragmentShaderSource  
-  );
-  engine.bindProgram(id);
+  engine.loadMesh(std::move(std::make_unique<gl::Square2>()));
+  engine.loadMesh(std::move(std::make_unique<gl::Square>()));
+  engine.loadMesh(std::move(std::make_unique<gl::Triangle>()));
 
   engine.mainLoop();
+  std::cout << "main loop end\n";
 }
 
 int main()
@@ -34,7 +28,7 @@ int main()
   try {
     useEngine();
   }
-  catch (char const* error) {
+  catch (const char* error) {
     std::cout << error << "\n";
     return -1;
   }
