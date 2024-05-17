@@ -6,39 +6,39 @@
 namespace gl {
 
 template <typename T>
-VBO::VBO(const VAO& vao, const GLenum& bufferType, const T* data, const size_t& data_size, const GLenum& usageType)
+VBO::VBO(const VAO& vao, const GLenum& bufferType, const T* data, const long& data_size, const GLenum& usageType)
     : ID(genVBO()), bufferType(bufferType)
 {
   vao.use();
   glBindBuffer(bufferType, ID);
-  glBufferData(bufferType, data_size, data, usageType);
+  glBufferData(bufferType, (data_size), data, usageType);
   std::cout << "VBO has been created: " << ID << "\n";
 }
 
 template <typename T>
-VBO::VBO(const GLenum& bufferType, const T* data, const size_t& data_size, const GLenum& usageType)
+VBO::VBO(const GLenum& bufferType, const T* data, const long& data_size, const GLenum& usageType)
     : ID(genVBO()), bufferType(bufferType)
 {
   VAO::lose();
   glBindBuffer(bufferType, ID);
-  glBufferData(bufferType, data_size, data, usageType);
+  glBufferData(bufferType, (data_size), data, usageType);
   std::cout << "VBO has been created: " << ID << "\n";
 }
 
 template VBO::VBO(const VAO& vao,
                   const GLenum& bufferType,
                   const float* data,
-                  const size_t& data_size,
+                  const long& data_size,
                   const GLenum& usageType);
 
-template VBO::VBO(const GLenum& bufferType, const float* data, const size_t& data_size, const GLenum& usageType);
+template VBO::VBO(const GLenum& bufferType, const float* data, const long& data_size, const GLenum& usageType);
 
-template VBO::VBO(const GLenum& bufferType, const unsigned int* data, const size_t& data_size, const GLenum& usageType);
+template VBO::VBO(const GLenum& bufferType, const unsigned int* data, const long& data_size, const GLenum& usageType);
 
 template VBO::VBO(const VAO& vao,
                   const GLenum& bufferType,
                   const unsigned int* data,
-                  const size_t& data_size,
+                  const long& data_size,
                   const GLenum& usageType);
 
 VBO::~VBO()

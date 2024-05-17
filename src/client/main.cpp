@@ -1,5 +1,6 @@
 #include <iostream>
 #include <memory>
+#include <utility>
 
 #include "engine.hpp"
 #include "square.hpp"
@@ -15,9 +16,9 @@ void useEngine()
 {
   gl::Engine engine;
 
-  engine.loadMesh(std::move(std::make_unique<gl::Square2>()));
-  engine.loadMesh(std::move(std::make_unique<gl::Square>()));
-  engine.loadMesh(std::move(std::make_unique<gl::Triangle>()));
+  engine.loadMesh(std::make_unique<gl::Square2>());
+  engine.loadMesh(std::make_unique<gl::Square>());
+  engine.loadMesh(std::make_unique<gl::Triangle>());
 
   engine.mainLoop();
   std::cout << "main loop end\n";

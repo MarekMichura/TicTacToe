@@ -47,28 +47,35 @@ public:
   }
 
 private:
-#define HEX_VALUE_OF_A 10;
-  constexpr static uint8_t charToUint8_t(const char data)
+  constexpr static uint8_t VALUE_OF_0_ASCII = 48;
+  constexpr static uint8_t VALUE_OF_A_ASCII = 65;
+  constexpr static uint8_t VALUE_OF_a_ASCII = 97;
+  constexpr static uint8_t HEX_VALUE_OF_A = 10;
+
+  constexpr static uint8_t charToUint8_t(const unsigned char data)
   {
     if (data >= '0' && data <= '9') {
-      return data - '0';
+      return data - VALUE_OF_0_ASCII;
     }
     if (data >= 'A' && data <= 'F') {
-      return data - 'A' + HEX_VALUE_OF_A;
+      return data - VALUE_OF_A_ASCII + HEX_VALUE_OF_A;
     }
     if (data >= 'a' && data <= 'f') {
-      return data - 'a' + HEX_VALUE_OF_A;
+      return data - VALUE_OF_a_ASCII + HEX_VALUE_OF_A;
     }
     throw "data outside the range";
   }
 
-#define TWO_BYTE_SIZE 16;
+  constexpr static uint8_t TWO_BYTE_SIZE = 16;
   constexpr static uint8_t char2ToUint8_t(const std::string data)
   {
     if (data.length() > 2) {
       throw "Wrong string length";
     }
-    return charToUint8_t(data[0]) * TWO_BYTE_SIZE + charToUint8_t(data[1]);
+
+    unsigned char firstNumber = static_cast<unsigned char>(data[0]);
+    unsigned char secondNumber = static_cast<unsigned char>(data[1]);
+    return charToUint8_t(firstNumber) * TWO_BYTE_SIZE + charToUint8_t(secondNumber);
   }
 };
 }  // namespace gl

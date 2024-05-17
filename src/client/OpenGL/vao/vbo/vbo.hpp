@@ -17,9 +17,9 @@ public:
   VBO(const VBO&) = delete;
 
   template <typename T>
-  VBO(const VAO& vao, const GLenum& bufferType, const T* data, const size_t& data_size, const GLenum& usageType);
+  VBO(const VAO& vao, const GLenum& bufferType, const T* data, const long& data_size, const GLenum& usageType);
   template <typename T>
-  VBO(const GLenum& bufferType, const T* data, const size_t& data_size, const GLenum& usageType);
+  VBO(const GLenum& bufferType, const T* data, const long& data_size, const GLenum& usageType);
   ~VBO();
 
   void use() const;

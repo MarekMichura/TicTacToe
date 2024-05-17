@@ -11,12 +11,11 @@ endif()
 
 project("TicTacToe" "CXX")
 set(FLAGS
-
-  # -Wall
-  # -pedantic
-  # -Wextra
-  # -Werror
-  # -Wconversion
+  -Wall
+  -pedantic
+  -Wextra
+  -Werror
+  -Wconversion
 )
 
 include(FetchContent)

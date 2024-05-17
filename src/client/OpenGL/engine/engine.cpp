@@ -58,14 +58,10 @@ void Engine::mainLoop()
     }
 
     if (window.getKeyStatus(GLFW_KEY_X) == GLFW_PRESS && press <= 0) {
-      for (int i = 0; i < 100; i++) {
-        loadMesh(std::move(std::make_unique<gl::Square>()));
-      }
+      loadMesh(std::make_unique<gl::Square>());
     }
     if (window.getKeyStatus(GLFW_KEY_Y) == GLFW_PRESS && press <= 0) {
-      for (int i = 0; i < 100; i++) {
-        loadMesh(std::move(std::make_unique<gl::Square2>()));
-      }
+      loadMesh(std::make_unique<gl::Square2>());
     }
 
     Window::clearSelectedWindow();
