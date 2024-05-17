@@ -14,8 +14,7 @@ Engine::Engine(const EngineConstructor& params)  //
   window.select();
   gladLoadGL();
   Window::setClearColor(params.windowBackgroundColor);
-  Window::setViewPort(params.windowConstructor.windowWidth,
-                      params.windowConstructor.windowHeight);
+  Window::setViewPort(params.windowConstructor.windowWidth, params.windowConstructor.windowHeight);
   glfwSetErrorCallback(errorCallBack);
 
   glad_glEnable(GL_BLEND);
@@ -31,12 +30,13 @@ void Engine::errorCallBack(int errorCode, const char* message)
 void Engine::mainLoop()
 {
   while (window.shouldClose()) {
-    if (window.getKeyStatus(GLFW_KEY_Q) == GLFW_PRESS)
+    if (window.getKeyStatus(GLFW_KEY_Q) == GLFW_PRESS){
       window.close();
+    }
     Window::clearSelectedWindow();
 
     for (const auto& mesh : meshes) {
-      mesh.get()->draw();
+      mesh->draw();
     }
 
     window.swapBuffer();

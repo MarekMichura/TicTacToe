@@ -13,8 +13,9 @@ std::shared_ptr<Program> ProgramContainer::getProgram(PROGRAM_NAME name)
 {
   auto it = container.find(name);
   if (it != container.end()) {
-    if (auto data = it->second.lock())
+    if (auto data = it->second.lock()) {
       return data;
+    }
   }
 
   auto fun = containerFun.find(name)->second();

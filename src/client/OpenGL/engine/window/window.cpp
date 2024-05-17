@@ -1,4 +1,6 @@
 #include <iostream>
+#include "glad/glad.h"
+#include "GLFW/glfw3.h"
 
 #include "window.hpp"
 
@@ -30,7 +32,7 @@ void Window::select()
   glfwMakeContextCurrent(window);
 }
 
-#define GLFW_SIGNAL_WINDOW_CLOSE 1
+constexpr int GLFW_SIGNAL_WINDOW_CLOSE = 1;
 void Window::close()
 {
   glfwSetWindowShouldClose(window, GLFW_SIGNAL_WINDOW_CLOSE);
@@ -38,7 +40,7 @@ void Window::close()
 
 bool Window::shouldClose()
 {
-  return !glfwWindowShouldClose(window);
+  return glfwWindowShouldClose(window) == 0;
 }
 
 void Window::swapBuffer()

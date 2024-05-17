@@ -6,11 +6,7 @@
 namespace gl {
 
 template <typename T>
-VBO::VBO(const VAO& vao,
-         const GLenum& bufferType,
-         const T* data,
-         const size_t& data_size,
-         const GLenum& usageType)
+VBO::VBO(const VAO& vao, const GLenum& bufferType, const T* data, const size_t& data_size, const GLenum& usageType)
     : ID(genVBO()), bufferType(bufferType)
 {
   vao.use();
@@ -20,10 +16,7 @@ VBO::VBO(const VAO& vao,
 }
 
 template <typename T>
-VBO::VBO(const GLenum& bufferType,
-         const T* data,
-         const size_t& data_size,
-         const GLenum& usageType)
+VBO::VBO(const GLenum& bufferType, const T* data, const size_t& data_size, const GLenum& usageType)
     : ID(genVBO()), bufferType(bufferType)
 {
   VAO::lose();
@@ -38,15 +31,9 @@ template VBO::VBO(const VAO& vao,
                   const size_t& data_size,
                   const GLenum& usageType);
 
-template VBO::VBO(const GLenum& bufferType,
-                  const float* data,
-                  const size_t& data_size,
-                  const GLenum& usageType);
+template VBO::VBO(const GLenum& bufferType, const float* data, const size_t& data_size, const GLenum& usageType);
 
-template VBO::VBO(const GLenum& bufferType,
-                  const unsigned int* data,
-                  const size_t& data_size,
-                  const GLenum& usageType);
+template VBO::VBO(const GLenum& bufferType, const unsigned int* data, const size_t& data_size, const GLenum& usageType);
 
 template VBO::VBO(const VAO& vao,
                   const GLenum& bufferType,
@@ -60,14 +47,14 @@ VBO::~VBO()
   glDeleteBuffers(1, &ID);
 }
 
-void VBO::use()
+void VBO::use() const
 {
   glBindBuffer(bufferType, ID);
 }
 
 GLuint VBO::genVBO()
 {
-  GLuint vbo;
+  GLuint vbo = 0;
   glGenBuffers(1, &vbo);
   return vbo;
 }

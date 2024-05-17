@@ -1,7 +1,6 @@
 #include "vboContainer.hpp"
 #include "squareData.h"
 #include "triangleData.h"
-#include "vao.hpp"
 #include "vbo.hpp"
 
 namespace gl {
@@ -18,8 +17,9 @@ std::shared_ptr<VBO> VBOContainer::getVBO(VBO_NAME name)
 {
   auto it = container.find(name);
   if (it != container.end()) {
-    if (auto data = it->second.lock())
+    if (auto data = it->second.lock()) {
       return data;
+    }
   }
 
   auto fun = containerFun.find(name)->second();

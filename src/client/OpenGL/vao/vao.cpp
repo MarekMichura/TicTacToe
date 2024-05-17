@@ -17,7 +17,7 @@ VAO::~VAO()
 
 GLuint VAO::genVAO()
 {
-  GLuint vao;
+  GLuint vao = 0;
   glGenVertexArrays(1, &vao);
   return vao;
 }
@@ -33,14 +33,15 @@ void VAO::lose()
 }
 
 void VAO::makePointer(  //
-    const GLuint& index,
-    const GLint& varCount,
-    const GLenum& type,
-    const GLboolean& isInt,
-    const GLsizei& bytes) const
+    const GLuint& indexOfVertexArray,
+    const GLint& howManyVariablesPerVertex,
+    const GLenum& typeOfVariables,
+    const GLboolean& isDataInt,
+    const GLsizei& howManyBytesFromDataPerVertex)
 {
-  glVertexAttribPointer(index, varCount, type, isInt, bytes, nullptr);
-  glEnableVertexAttribArray(index);
+  glVertexAttribPointer(indexOfVertexArray, howManyVariablesPerVertex, typeOfVariables,  //
+                        isDataInt, howManyBytesFromDataPerVertex, nullptr);
+  glEnableVertexAttribArray(indexOfVertexArray);
 }
 
 }  // namespace gl

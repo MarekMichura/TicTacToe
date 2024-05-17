@@ -10,23 +10,21 @@ Program::Program(  //
     const std::string& nameOfFragmentShader)
     : ID(glCreateProgram())
 {
-  auto vertexShader =
-      Shader::createFromFile(nameOfFragmentShader, GL_FRAGMENT_SHADER);
-  auto fragmentShader =
-      Shader::createFromFile(nameOfVertexShader, GL_VERTEX_SHADER);
+  auto vertexShader = Shader::createFromFile(nameOfFragmentShader, GL_FRAGMENT_SHADER);
+  auto fragmentShader = Shader::createFromFile(nameOfVertexShader, GL_VERTEX_SHADER);
 
   glAttachShader(ID, vertexShader.getID());
   glAttachShader(ID, fragmentShader.getID());
 
   glLinkProgram(ID);
-  GLint linkStatus;
+  GLint linkStatus = 0;
   glGetProgramiv(ID, GL_LINK_STATUS, &linkStatus);
 
   if (linkStatus == GL_FALSE) {
-    GLint logLength;
+    GLint logLength = 0;
     glGetProgramiv(ID, GL_INFO_LOG_LENGTH, &logLength);
 
-    auto log = std::make_unique<char[]>(static_cast<size_t>(logLength));
+    auto log = std::make_unique<char>(static_cast<size_t>(logLength));
     glGetProgramInfoLog(ID, logLength, NULL, log.get());
     std::cout << "Error with linking program: " << log.get();
 

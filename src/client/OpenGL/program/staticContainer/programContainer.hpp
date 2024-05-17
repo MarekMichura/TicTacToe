@@ -7,8 +7,7 @@
 #include "programEnum.h"
 
 namespace gl {
-using ProgramFunMap =
-    std::map<PROGRAM_NAME, std::function<std::shared_ptr<Program>()>>;
+using ProgramFunMap = std::map<PROGRAM_NAME, std::function<std::shared_ptr<Program>()>>;
 using ProgramMap = std::map<PROGRAM_NAME, std::weak_ptr<Program>>;
 
 class ProgramContainer {

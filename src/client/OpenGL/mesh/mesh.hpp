@@ -16,8 +16,13 @@ protected:
   std::vector<std::shared_ptr<VBO>> vbo;
 
 public:
+  Mesh(const Mesh&) = delete;
+  Mesh(Mesh&&) = delete;
+  Mesh& operator=(const Mesh&) = delete;
+  Mesh& operator=(Mesh&&) = delete;
+
   Mesh(PROGRAM_NAME name);
-  ~Mesh();
+  virtual ~Mesh();
 
   virtual void draw() const;
 };

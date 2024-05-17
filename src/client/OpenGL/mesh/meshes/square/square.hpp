@@ -12,6 +12,11 @@
 namespace gl {
 class Square : public Mesh {
 public:
+  Square(const Square&) = delete;
+  Square(Square&&) = delete;
+  Square& operator=(const Square&) = delete;
+  Square& operator=(Square&&) = delete;
+
   Square() : Mesh(PROGRAM_NAME::RED_COLOR)
   {
     vbo.push_back(VBOContainer::getVBO(VBO_NAME::SQUARE_VERTEX_ARRAY));
@@ -22,8 +27,11 @@ public:
     vbo[1]->use();
     vao.makePointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2);
   }
-
-  ~Square() { std::cout << "Square destroyed\n"; }
+  ~Square() override
+  {
+    Mesh::~Mesh();
+    std::cout << "Square destroyed\n";
+  }
 
   void draw() const override
   {
@@ -34,6 +42,11 @@ public:
 
 class Square2 : public Mesh {
 public:
+  Square2(const Square2&) = delete;
+  Square2(Square2&&) = delete;
+  Square2& operator=(const Square2&) = delete;
+  Square2& operator=(Square2&&) = delete;
+
   Square2() : Mesh(PROGRAM_NAME::RED_COLOR)
   {
     vbo.push_back(VBOContainer::getVBO(VBO_NAME::SQUARE_VERTEX_ARRAY));
@@ -45,7 +58,11 @@ public:
     vao.makePointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2);
   }
 
-  ~Square2() { std::cout << "Square destroyed\n"; }
+  ~Square2() override
+  {
+    Mesh::~Mesh();
+    std::cout << "Square destroyed\n";
+  }
 
   void draw() const override
   {

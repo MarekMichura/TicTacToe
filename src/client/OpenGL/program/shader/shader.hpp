@@ -9,7 +9,11 @@ private:
   const GLuint ID;
 
 public:
+  Shader(Shader&&) = delete;
+  Shader& operator=(const Shader&) = delete;
+  Shader& operator=(Shader&&) = delete;
   Shader(const Shader&) = delete;
+
   Shader(const std::string& source, const GLenum& type);
   ~Shader();
 

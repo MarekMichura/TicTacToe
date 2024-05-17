@@ -11,21 +11,18 @@ private:
   const GLenum bufferType;
 
 public:
+  VBO(VBO&&) = delete;
+  VBO& operator=(const VBO&) = delete;
+  VBO& operator=(VBO&&) = delete;
   VBO(const VBO&) = delete;
+
   template <typename T>
-  VBO(const VAO& vao,
-      const GLenum& bufferType,
-      const T* data,
-      const size_t& data_size,
-      const GLenum& usageType);
+  VBO(const VAO& vao, const GLenum& bufferType, const T* data, const size_t& data_size, const GLenum& usageType);
   template <typename T>
-  VBO(const GLenum& bufferType,
-      const T* data,
-      const size_t& data_size,
-      const GLenum& usageType);
+  VBO(const GLenum& bufferType, const T* data, const size_t& data_size, const GLenum& usageType);
   ~VBO();
 
-  void use();
+  void use() const;
 
 private:
   static GLuint genVBO();

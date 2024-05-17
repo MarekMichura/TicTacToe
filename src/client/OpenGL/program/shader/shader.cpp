@@ -1,4 +1,3 @@
-#include <cstddef>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -6,8 +5,7 @@
 #include "shader.hpp"
 
 namespace gl {
-Shader::Shader(const std::string& source, const GLenum& type)
-    : ID(glCreateShader(type))
+Shader::Shader(const std::string& source, const GLenum& type) : ID(glCreateShader(type))
 {
   const char* c_source = source.c_str();
   glShaderSource(ID, 1, &c_source, nullptr);

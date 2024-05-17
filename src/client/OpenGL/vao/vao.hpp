@@ -9,18 +9,22 @@ private:
   const GLuint ID;
 
 public:
+  VAO(VAO&&) = delete;
+  VAO& operator=(const VAO&) = delete;
+  VAO& operator=(VAO&&) = delete;
   VAO(const VAO&) = delete;
+
   VAO();
   ~VAO();
 
   void use() const;
-  void makePointer(  //
+
+  static void makePointer(  //
       const GLuint& indexOfVertexArray,
       const GLint& howManyVariablesPerVertex,
       const GLenum& typeOfVariables,
       const GLboolean& isDataInt,
-      const GLsizei& howManyBytesFromDataPerVertex) const;
-
+      const GLsizei& howManyBytesFromDataPerVertex);
   static void lose();
 
 private:

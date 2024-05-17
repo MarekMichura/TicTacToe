@@ -17,10 +17,15 @@ private:
   std::vector<std::unique_ptr<Mesh>> meshes;
 
 public:
+  Engine(Engine&&) = delete;
+  Engine& operator=(const Engine&) = delete;
+  Engine& operator=(Engine&&) = delete;
   Engine(const Engine&) = delete;
-  Engine(const EngineConstructor& params = EngineConstructorDefault);
-  void mainLoop();
 
+  Engine(const EngineConstructor& params = EngineConstructorDefault);
+  ~Engine(){};
+
+  void mainLoop();
   void loadProgram(const std::shared_ptr<Program> program);
   void loadMesh(std::unique_ptr<Mesh> mesh);
 

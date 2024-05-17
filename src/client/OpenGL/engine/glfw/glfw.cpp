@@ -6,7 +6,7 @@ namespace gl {
 
 GLFW::GLFW(const GlfwConstructor& param)
 {
-  if (!glfwInit()) {
+  if (glfwInit() == 0) {
     throw "Failed to initialize glfw\n";
   }
 
