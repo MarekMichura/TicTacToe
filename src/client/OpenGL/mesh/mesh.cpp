@@ -7,7 +7,7 @@ Mesh::Mesh(PROGRAM_NAME name) : program(ProgramContainer::getProgram(name)) {}
 
 Mesh::~Mesh()
 {
-  std::cout << "Mesh has been deleted\n";
+  std::cout << "Mesh will be deleted\n";
 }
 
 void Mesh::draw() const

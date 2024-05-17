@@ -16,8 +16,8 @@ Shader::Shader(const std::string& source, const GLenum& type) : ID(glCreateShade
 
 Shader::~Shader()
 {
+  std::cout << "Shader will be destroyed: " << ID << "\n";
   glDeleteShader(ID);
-  std::cout << "Shader has been destroyed: " << ID << "\n";
 }
 
 GLuint Shader::getID() const

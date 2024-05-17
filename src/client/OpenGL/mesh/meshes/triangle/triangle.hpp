@@ -21,10 +21,10 @@ public:
 
     vao.use();
     vbo[0]->use();
-    vao.makePointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2);
+    VAO::makePointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2);
   }
 
-  ~Triangle() override { std::cout << "Triangle destroyed\n"; }
+  ~Triangle() override { std::cout << "Triangle will be destroyed\n"; }
 
   void draw() const override
   {

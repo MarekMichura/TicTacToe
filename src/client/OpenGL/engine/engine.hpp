@@ -23,7 +23,7 @@ public:
   Engine(const Engine&) = delete;
 
   Engine(const EngineConstructor& params = EngineConstructorDefault);
-  ~Engine(){};
+  ~Engine();
 
   void mainLoop();
   void loadProgram(const std::shared_ptr<Program> program);

@@ -43,7 +43,7 @@ template VBO::VBO(const VAO& vao,
 
 VBO::~VBO()
 {
-  std::cout << "VBO: " << ID << " has been deleted: " << ID << "\n";
+  std::cout << "VBO will be deleted: " << ID << "\n";
   glDeleteBuffers(1, &ID);
 }
 

@@ -23,8 +23,8 @@ Window::Window(const WindowConstructor& param)
 
 Window::~Window()
 {
+  std::cout << "Window will be destroyed\n";
   glfwDestroyWindow(window);
-  std::cout << "Window has been destroyed\n";
 }
 
 void Window::select()

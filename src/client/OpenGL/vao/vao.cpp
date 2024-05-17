@@ -11,8 +11,8 @@ VAO::VAO() : ID(genVAO())
 
 VAO::~VAO()
 {
+  std::cout << "VAO will be deleted: " << ID << "\n";
   glDeleteVertexArrays(1, &ID);
-  std::cout << "VAO has been deleted: " << ID << "\n";
 }
 
 GLuint VAO::genVAO()

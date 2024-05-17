@@ -19,7 +19,7 @@ std::shared_ptr<Program> ProgramContainer::getProgram(PROGRAM_NAME name)
   }
 
   auto fun = containerFun.find(name)->second();
-  container.insert({name, fun});
+  container.insert_or_assign(name, fun);
   return fun;
 }
 }  // namespace gl

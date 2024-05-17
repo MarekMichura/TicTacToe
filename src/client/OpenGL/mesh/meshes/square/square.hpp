@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <memory>
 #include "mesh.hpp"
 #include "program.hpp"
 #include "staticContainer/programEnum.h"
@@ -25,13 +26,9 @@ public:
     vao.use();
     vbo[0]->use();
     vbo[1]->use();
-    vao.makePointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2);
+    VAO::makePointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2);
   }
-  ~Square() override
-  {
-    Mesh::~Mesh();
-    std::cout << "Square destroyed\n";
-  }
+  ~Square() override { std::cout << "Square will be destroyed\n"; }
 
   void draw() const override
   {
@@ -55,14 +52,10 @@ public:
     vao.use();
     vbo[0]->use();
     vbo[1]->use();
-    vao.makePointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2);
+    VAO::makePointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2);
   }
 
-  ~Square2() override
-  {
-    Mesh::~Mesh();
-    std::cout << "Square destroyed\n";
-  }
+  ~Square2() override { std::cout << "Square2 will be destroyed\n"; }
 
   void draw() const override
   {

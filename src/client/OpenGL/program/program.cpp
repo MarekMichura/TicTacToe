@@ -36,7 +36,7 @@ Program::Program(  //
 
 Program::~Program()
 {
-  std::cout << "Program has been deleted: " << ID << "\n";
+  std::cout << "Program will be deleted: " << ID << "\n";
   glDeleteProgram(ID);
 }
 
