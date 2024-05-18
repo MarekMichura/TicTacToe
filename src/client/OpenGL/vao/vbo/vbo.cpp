@@ -1,5 +1,4 @@
 #include "vbo.hpp"
-#include <X11/X.h>
 #include <iostream>
 
 namespace gl {

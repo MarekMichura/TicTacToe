@@ -12,7 +12,7 @@ constexpr static std::array<Position2d, 3> TRIANGLE_POINTS = {
 
 inline std::shared_ptr<VBO> VBO_TRIANGLE_POINTS()
 {
-  auto* ptr = new VBO(GL_ELEMENT_ARRAY_BUFFER, TRIANGLE_POINTS, sizeof(TRIANGLE_POINTS), GL_STATIC_DRAW);
+  auto* ptr = new VBO(GL_ARRAY_BUFFER, TRIANGLE_POINTS, sizeof(TRIANGLE_POINTS), GL_STATIC_DRAW);
   return std::shared_ptr<VBO>(ptr);
 }
 }  // namespace gl

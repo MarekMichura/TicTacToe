@@ -22,7 +22,7 @@ public:
   Engine& operator=(Engine&&) = delete;
   Engine(const Engine&) = delete;
 
-  Engine(const EngineConstructor& params = EngineConstructorDefault);
+  Engine(const EngineConstructor& params = EngineConstructor());
   ~Engine();
 
   void mainLoop();
