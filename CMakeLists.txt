@@ -10,19 +10,24 @@ if(POLICY CMP0141)
 endif()
 
 project("TicTacToe" "CXX")
-set(FLAGS
-)
+
+#if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+if(MSVC)
+  set(FLAGS "/Wall /Wpedantic /Wextra /WX /Wconversion")
+else()
+  set(FLAGS "-Wall -pedantic -Wextra -Werror -Wconversion")
+endif()
 
 include(FetchContent)
-FetchContent_Declare(
-  glfw
-  GIT_REPOSITORY https://github.com/glfw/glfw)
-FetchContent_MakeAvailable(glfw)
+# FetchContent_Declare(
+#   glfw
+#   GIT_REPOSITORY https://github.com/glfw/glfw)
+# FetchContent_MakeAvailable(glfw)
 
-FetchContent_Declare(
-  glad
-  GIT_REPOSITORY https://github.com/Dav1dde/glad)
-FetchContent_MakeAvailable(glad)
+# FetchContent_Declare(
+#   glad
+#   GIT_REPOSITORY https://github.com/Dav1dde/glad)
+# FetchContent_MakeAvailable(glad)
 
 # FetchContent_Declare(
 # glm
