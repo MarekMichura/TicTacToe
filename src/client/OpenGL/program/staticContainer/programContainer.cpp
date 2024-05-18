@@ -1,12 +1,16 @@
 #include <memory>
 #include "programContainer.hpp"
-#include "redColor/_shaderColorRed.h"
+#include "_shaderColorRed.h"
+#include "_shaderColoredVertices.h"
+#include "staticContainer/programEnum.h"
 
 namespace gl {
 ProgramMap ProgramContainer::container{};
 
 const ProgramFunMap ProgramContainer::containerFun{
-    {PROGRAM_NAME::RED_COLOR, PROGRAM_COLOR_RED},  //
+    //
+    {PROGRAM_NAME::RED_COLOR, PROGRAM_COLOR_RED},                //
+    {PROGRAM_NAME::COLORED_VERTICES, PROGRAM_COLORED_VERTICES},  //
 };
 
 std::shared_ptr<Program> ProgramContainer::getProgram(PROGRAM_NAME name)

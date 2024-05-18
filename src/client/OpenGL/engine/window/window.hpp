@@ -15,7 +15,7 @@ public:
   Window& operator=(Window&&) = delete;
   Window(const Window&) = delete;
 
-  Window(const WindowConstructor& param = windowConstructorDefault);
+  Window(const WindowConstructor& param = WindowConstructor());
   ~Window();
 
   void select();

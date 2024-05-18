@@ -3,12 +3,14 @@
 #include <string>
 #include "GLFW/glfw3.h"
 
+constexpr int DEFAULT_WINDOW_SIZE = 800;
+
+namespace gl {
 struct WindowConstructor {
-  int windowWidth = 800;
-  int windowHeight = 800;
+  int windowWidth = DEFAULT_WINDOW_SIZE;
+  int windowHeight = DEFAULT_WINDOW_SIZE;
   std::string windowTitle = "Window title";
   GLFWmonitor* monitorToFullScreen = nullptr;
   GLFWwindow* windowToShareResource = nullptr;
 };
-
-constexpr WindowConstructor windowConstructorDefault = {};
+}  // namespace gl

@@ -1,8 +1,6 @@
-#version 450 core
-#ifdef GL_ES
-precision mediump float;
-#endif
+#version 330 core
 
+// in vec3 color;
 out vec4 FragColor;
 
 float distance2D(vec2 p1, vec2 p2)

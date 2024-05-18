@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstddef>
 #include "glad//glad.h"
 
 namespace gl {
@@ -24,7 +25,8 @@ public:
       const GLint& howManyVariablesPerVertex,
       const GLenum& typeOfVariables,
       const GLboolean& isDataInt,
-      const GLsizei& howManyBytesFromDataPerVertex);
+      const GLsizei& howManyBytesFromDataPerVertex,
+      const void* offset = nullptr);
   static void lose();
 
 private:

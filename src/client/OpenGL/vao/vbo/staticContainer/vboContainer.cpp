@@ -1,5 +1,6 @@
 #include "vboContainer.hpp"
 #include "squareData.h"
+#include "coloredSquareData.h"
 #include "triangleData.h"
 #include "vbo.hpp"
 
@@ -7,10 +8,11 @@ namespace gl {
 VboMap VBOContainer::container{};
 
 const VboFunMap VBOContainer::containerFun{
-    {VBO_NAME::TRIANGLE_VERTEX_ARRAY, VBO_TRIANGLE_POINTS},            //
-    {VBO_NAME::SQUARE_VERTEX_ARRAY, VBO_SQUARE_POINTS},                //
-    {VBO_NAME::SQUARE_VERTEX_INDEX, VBO_SQUARE_INDEX},                 //
-    {VBO_NAME::SQUARE_VERTEX_INDEX_INVALID, VBO_SQUARE_INDEX_PROBLEM}  //
+    {VBO_NAME::TRIANGLE_VERTEX_ARRAY, VBO_TRIANGLE_POINTS},              //
+    {VBO_NAME::SQUARE_VERTEX_ARRAY, VBO_SQUARE_POINTS},                  //
+    {VBO_NAME::SQUARE_VERTEX_INDEX, VBO_SQUARE_INDEX},                   //
+    {VBO_NAME::COLORED_SQUARE_VERTEX_ARRAY, VBO_COLORED_SQUARE_POINTS},  //
+    {VBO_NAME::COLORED_SQUARE_VERTEX_INDEX, VBO_COLORED_SQUARE_INDEX},   //
 };
 
 std::shared_ptr<VBO> VBOContainer::getVBO(VBO_NAME name)

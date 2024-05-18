@@ -12,7 +12,7 @@ public:
   GLFW& operator=(const GLFW&) = delete;
   GLFW& operator=(GLFW&&) = delete;
 
-  GLFW(const GlfwConstructor& params = GlfwConstructorDefault);
+  GLFW(const GlfwConstructor& params = GlfwConstructor());
   ~GLFW();
 
 private:

@@ -1,5 +1,6 @@
 #include "vao.hpp"
 #include <GL/gl.h>
+#include <cstddef>
 #include <iostream>
 
 namespace gl {
@@ -37,10 +38,11 @@ void VAO::makePointer(  //
     const GLint& howManyVariablesPerVertex,
     const GLenum& typeOfVariables,
     const GLboolean& isDataInt,
-    const GLsizei& howManyBytesFromDataPerVertex)
+    const GLsizei& howManyBytesFromDataPerVertex,
+    const void* offset)
 {
   glVertexAttribPointer(indexOfVertexArray, howManyVariablesPerVertex, typeOfVariables,  //
-                        isDataInt, howManyBytesFromDataPerVertex, nullptr);
+                        isDataInt, howManyBytesFromDataPerVertex, offset);
   glEnableVertexAttribArray(indexOfVertexArray);
 }
 

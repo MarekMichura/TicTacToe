@@ -1,7 +1,7 @@
 #include <iostream>
 #include <memory>
-#include <utility>
 
+#include "coloredSquare.hpp"
 #include "engine.hpp"
 #include "square.hpp"
 #include "triangle.hpp"
@@ -16,7 +16,7 @@ void useEngine()
 {
   gl::Engine engine;
 
-  engine.loadMesh(std::make_unique<gl::Square2>());
+  engine.loadMesh(std::make_unique<gl::ColoredSquare>());
   engine.loadMesh(std::make_unique<gl::Square>());
   engine.loadMesh(std::make_unique<gl::Triangle>());
 

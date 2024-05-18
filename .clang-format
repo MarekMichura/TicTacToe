@@ -8,4 +8,4 @@ IndentCaseLabels: true
 AccessModifierOffset: -2
 SortIncludes: Never
 BreakBeforeBraces: Stroustrup
-ColumnLimit:     120
+ColumnLimit: 120 

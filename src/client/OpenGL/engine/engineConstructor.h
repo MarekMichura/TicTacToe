@@ -6,9 +6,9 @@
 
 namespace gl {
 struct EngineConstructor {
-  GlfwConstructor glfwConstructor = GlfwConstructorDefault;
-  WindowConstructor windowConstructor = windowConstructorDefault;
-  Color windowBackgroundColor = Color::hexadecimalColorCode("#DBB4AD");
+  GlfwConstructor glfwConstructor = GlfwConstructor();
+  WindowConstructor windowConstructor = WindowConstructor();
+  Color windowBackgroundColor = COLOR::COLOR_BG;
 };
 
 constexpr EngineConstructor EngineConstructorDefault = {};

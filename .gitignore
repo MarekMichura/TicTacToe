@@ -12,6 +12,6 @@ _deps
 
 
 **/build/**
-\.cache/**
 \.vscode/**
+\.cache/**
 \.vs/**

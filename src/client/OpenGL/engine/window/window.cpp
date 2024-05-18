@@ -48,8 +48,6 @@ void Window::swapBuffer()
   glfwSwapBuffers(window);
 }
 
-// #define TOP_Y_VIEWPORT 0;
-// #define LEFT_X_VIEWPORT 0;
 void Window::setViewPort(const int width, const int height)
 {
   glViewport(0, 0, width, height);

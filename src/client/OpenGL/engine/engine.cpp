@@ -3,6 +3,7 @@
 #include <iostream>
 #include <memory>
 #include "mesh.hpp"
+#include "triangle.hpp"
 #include "window.hpp"
 #include "engine.hpp"
 #include "glfw.hpp"
@@ -45,7 +46,7 @@ void Engine::mainLoop()
     double t_time = glfwGetTime();
     press = (press > 0) ? press - 1 : press;
     if (t_time - time >= 1) {
-      std::cout << "FPS: " << frame << "\n";
+      // std::cout << "FPS: " << frame << "\n";
       frame = 0;
       time = glfwGetTime();
     }
@@ -58,10 +59,10 @@ void Engine::mainLoop()
     }
 
     if (window.getKeyStatus(GLFW_KEY_X) == GLFW_PRESS && press <= 0) {
-      loadMesh(std::make_unique<gl::Square>());
+      loadMesh(std::make_unique<Square>());
     }
     if (window.getKeyStatus(GLFW_KEY_Y) == GLFW_PRESS && press <= 0) {
-      loadMesh(std::make_unique<gl::Square2>());
+      loadMesh(std::make_unique<Triangle>());
     }
 
     Window::clearSelectedWindow();

@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <string>
 
-#define COLOR_BYTE_TO_FLOAT_RATION 1.f / 255.f;
+constexpr float COLOR_BYTE_TO_FLOAT_RATION = 1.f / 255.f;
 constexpr uint8_t COLOR_BYTE_MAX_VALUE = 255;
 
 namespace gl {
@@ -75,7 +75,15 @@ private:
 
     unsigned char firstNumber = static_cast<unsigned char>(data[0]);
     unsigned char secondNumber = static_cast<unsigned char>(data[1]);
-    return charToUint8_t(firstNumber) * TWO_BYTE_SIZE + charToUint8_t(secondNumber);
+
+    return static_cast<uint8_t>(charToUint8_t(firstNumber) * TWO_BYTE_SIZE) + charToUint8_t(secondNumber);
   }
 };
+
+namespace COLOR {
+constexpr Color COLOR_BG = Color::hexadecimalColorCode("#DBB4AD");
+constexpr Color COLOR_RED = Color::hexadecimalColorCode("#ff0000");
+constexpr Color COLOR_GREEN = Color::hexadecimalColorCode("#00ff00");
+constexpr Color COLOR_BLUE = Color::hexadecimalColorCode("#0000ff");
+}  // namespace COLOR
 }  // namespace gl
