@@ -11,5 +11,4 @@ struct EngineConstructor {
   Color windowBackgroundColor = COLOR::COLOR_BG;
 };
 
-
 }  // namespace gl

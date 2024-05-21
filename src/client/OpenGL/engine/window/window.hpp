@@ -23,6 +23,7 @@ public:
   bool shouldClose();
   void swapBuffer();
   int getKeyStatus(const int& key);
+  void setFullScreen(bool main = false);
 
   static void setViewPort(const int width, const int height);
   static void clearSelectedWindow();

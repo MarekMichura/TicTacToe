@@ -1,13 +1,15 @@
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
+#include <cassert>
 #include <iostream>
 #include <memory>
 #include "mesh.hpp"
-#include "triangle.hpp"
+#include "staticContainer/vboContainer.hpp"
+#include "timeVBO.hpp"
 #include "window.hpp"
 #include "engine.hpp"
+#include <GL/gl.h>
 #include "glfw.hpp"
-#include "square.hpp"
 
 namespace gl {
 
@@ -22,6 +24,8 @@ Engine::Engine(const EngineConstructor& params)  //
 
   glad_glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+  uniform_time = VBOContainer::getVBO(VBO_NAME::TIME);
 }
 
 Engine::~Engine()
@@ -31,41 +35,44 @@ Engine::~Engine()
 
 void Engine::errorCallBack(int errorCode, const char* message)
 {
-  std::cout << errorCode << " -:- " << message << "\n";
-  throw message;
+  std::cout << errorCode << ": " << message << "\n";
+  assert(false);
+}
+
+void Engine::setFullScreen(bool main)
+{
+  window.setFullScreen(main);
+}
+
+void timeControl(double& prevTime, int& frame)
+{
+  frame++;
+  double time = glfwGetTime();
+  double difference = time - prevTime;
+  if (difference >= 1) {
+    std::cout << "FPS: " << frame << "\n";
+    frame = 0;
+    prevTime = glfwGetTime();
+  }
 }
 
 void Engine::mainLoop()
 {
-  int press = 0;
-  double time = glfwGetTime();
   int frame = 0;
+  double time = glfwGetTime();
+  double prevTime = glfwGetTime();
 
   while (window.shouldClose()) {
-    frame++;
-    double t_time = glfwGetTime();
-    press = (press > 0) ? press - 1 : press;
-    if (t_time - time >= 1) {
-      // std::cout << "FPS: " << frame << "\n";
-      frame = 0;
-      time = glfwGetTime();
-    }
+    timeControl(time, frame);
+    prevTime = glfwGetTime();
 
+    TimeDataVBO data{.currentTime = float(glfwGetTime()), .timeDifference = float(glfwGetTime() - prevTime)};
+    uniform_time->changeData(0, sizeof(TimeDataVBO), &data);
+
+    Window::clearSelectedWindow();
     if (window.getKeyStatus(GLFW_KEY_Q) == GLFW_PRESS) {
       window.close();
     }
-    if (window.getKeyStatus(GLFW_KEY_W) == GLFW_PRESS && !meshes.empty()) {
-      meshes.clear();
-    }
-
-    if (window.getKeyStatus(GLFW_KEY_X) == GLFW_PRESS && press <= 0) {
-      loadMesh(std::make_unique<Square>());
-    }
-    if (window.getKeyStatus(GLFW_KEY_Y) == GLFW_PRESS && press <= 0) {
-      loadMesh(std::make_unique<Triangle>());
-    }
-
-    Window::clearSelectedWindow();
 
     for (const auto& mesh : meshes) {
       mesh->draw();

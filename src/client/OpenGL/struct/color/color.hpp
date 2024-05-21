@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cassert>
 #include <cstdint>
 #include <string>
 
@@ -54,6 +55,7 @@ private:
 
   constexpr static uint8_t charToUint8_t(const unsigned char data)
   {
+    assert((data >= '0' && data <= '9') || (data >= 'A' && data <= 'F') || (data >= 'a' && data <= 'f'));
     if (data >= '0' && data <= '9') {
       return data - VALUE_OF_0_ASCII;
     }
@@ -63,15 +65,12 @@ private:
     if (data >= 'a' && data <= 'f') {
       return data - VALUE_OF_a_ASCII + HEX_VALUE_OF_A;
     }
-    throw "data outside the range";
   }
 
   constexpr static uint8_t TWO_BYTE_SIZE = 16;
   constexpr static uint8_t char2ToUint8_t(const std::string data)
   {
-    if (data.length() > 2) {
-      throw "Wrong string length";
-    }
+    assert(data.length() <= 2);
 
     unsigned char firstNumber = static_cast<unsigned char>(data[0]);
     unsigned char secondNumber = static_cast<unsigned char>(data[1]);

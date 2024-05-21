@@ -1,3 +1,4 @@
+#include <cassert>
 #include <iostream>
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
@@ -13,9 +14,7 @@ Window::Window(const WindowConstructor& param)
           param.monitorToFullScreen,
           param.windowToShareResource))
 {
-  if (window == nullptr) {
-    throw "Failed to create window\n";
-  }
+  assert(window != nullptr);
   glfwSetFramebufferSizeCallback(window, eventViewPortChange);
 
   std::cout << "Window has been created\n";
@@ -46,6 +45,22 @@ bool Window::shouldClose()
 void Window::swapBuffer()
 {
   glfwSwapBuffers(window);
+}
+
+void Window::setFullScreen(bool main)
+{
+  GLFWmonitor* monitor = main ? glfwGetPrimaryMonitor() : glfwGetWindowMonitor(window);
+
+  int width = 0;
+  int height = 0;
+  glfwGetWindowSize(window, &width, &height);
+
+  int modesCount = 0;
+  const GLFWvidmode* modes = glfwGetVideoModes(monitor, &modesCount);
+  assert(modes);
+  int refreshRate = modes[0].refreshRate;
+
+  glfwSetWindowMonitor(window, monitor, 0, 0, width, height, refreshRate);
 }
 
 void Window::setViewPort(const int width, const int height)

@@ -42,7 +42,7 @@ void VAO::makePointer(  //
     const void* offset)
 {
   glVertexAttribPointer(indexOfVertexArray, howManyVariablesPerVertex, typeOfVariables,  //
-                        isDataInt, howManyBytesFromDataPerVertex, nullptr);
+                        isDataInt, howManyBytesFromDataPerVertex, offset);
   glEnableVertexAttribArray(indexOfVertexArray);
 }
 

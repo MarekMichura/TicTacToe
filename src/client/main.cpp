@@ -12,7 +12,7 @@ __declspec(dllexport) unsigned long NvOptimusEnablement = 0x00000001;
 }
 #endif
 
-void useEngine()
+int main()
 {
   gl::Engine engine;
 
@@ -22,15 +22,4 @@ void useEngine()
 
   engine.mainLoop();
   std::cout << "main loop end\n";
-}
-
-int main()
-{
-  try {
-    useEngine();
-  }
-  catch (const char* error) {
-    std::cout << error << "\n";
-    return -1;
-  }
 }

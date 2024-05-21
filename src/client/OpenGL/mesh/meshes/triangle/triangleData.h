@@ -1,3 +1,5 @@
+#pragma once
+
 #include <array>
 #include <memory>
 #include "position2d.hpp"

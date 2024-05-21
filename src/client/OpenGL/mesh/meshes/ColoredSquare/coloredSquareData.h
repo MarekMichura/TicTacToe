@@ -11,10 +11,10 @@ struct ColPos {
   Color col;
 };
 constexpr static std::array<ColPos, 4> COLORED_SQUARE_POINTS = {
-    ColPos{Position2d(-1.f, 1.f), COLOR::COLOR_BG},    // left top
-    ColPos{Position2d(-1.f, 0.f), COLOR::COLOR_RED},   // left bottom
-    ColPos{Position2d(1.f, .0f), COLOR::COLOR_GREEN},  // right bottom
-    ColPos{Position2d(1.f, 1.f), COLOR::COLOR_BLUE},   // right top
+    ColPos{Position2d(-.6f, .3f), COLOR::COLOR_BG},     // left top
+    ColPos{Position2d(-.6f, -.3f), COLOR::COLOR_RED},   // left bottom
+    ColPos{Position2d(.6f, -.3f), COLOR::COLOR_GREEN},  // right bottom
+    ColPos{Position2d(.6f, .3f), COLOR::COLOR_BLUE},    // right top
 };
 
 inline std::shared_ptr<VBO> VBO_COLORED_SQUARE_POINTS()

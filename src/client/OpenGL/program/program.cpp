@@ -1,8 +1,10 @@
+#include <cassert>
 #include <cstddef>
 #include <iostream>
 #include <memory>
 #include "shader.hpp"
 #include "program.hpp"
+#include <GL/gl.h>
 
 namespace gl {
 Program::Program(  //
@@ -20,16 +22,15 @@ Program::Program(  //
   GLint linkStatus = 0;
   glGetProgramiv(ID, GL_LINK_STATUS, &linkStatus);
 
-  if (linkStatus == GL_FALSE) {
-    GLint logLength = 0;
-    glGetProgramiv(ID, GL_INFO_LOG_LENGTH, &logLength);
+  assert(linkStatus != GL_FALSE);
+  // if (linkStatus == GL_FALSE) {
+  //   GLint logLength = 0;
+  //   glGetProgramiv(ID, GL_INFO_LOG_LENGTH, &logLength);
 
-    auto log = std::make_unique<char>(static_cast<size_t>(logLength));
-    glGetProgramInfoLog(ID, logLength, NULL, log.get());
-    std::cout << "Error with linking program: " << log.get();
-
-    throw "Error with linking program";
-  }
+  //   auto log = std::make_unique<char>(static_cast<size_t>(logLength));
+  //   glGetProgramInfoLog(ID, logLength, NULL, log.get());
+  //   std::cout << "Error with linking program: " << log.get();
+  // }
 
   std::cout << "Program has been created: " << ID << "\n";
 }
@@ -43,5 +44,17 @@ Program::~Program()
 void Program::use() const
 {
   glUseProgram(ID);
+}
+
+GLuint Program::getID() const
+{
+  return ID;
+}
+
+void Program::combineUniform(const std::string& name, const std::shared_ptr<VBO> vbo, const GLuint lp) const
+{
+  GLuint blockIndex = glGetUniformBlockIndex(ID, name.c_str());
+  glUniformBlockBinding(ID, blockIndex, lp);
+  glBindBufferBase(GL_UNIFORM_BUFFER, lp, vbo->getID());
 }
 }  // namespace gl

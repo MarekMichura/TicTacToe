@@ -1,18 +1,20 @@
 #include "square.hpp"
 #include <iostream>
+#include "position2d.hpp"
+#include "staticContainer/programContainer.hpp"
 #include "staticContainer/vboEnum.h"
 #include "staticContainer/vboContainer.hpp"
 
 namespace gl {
-Square::Square() : Mesh(PROGRAM_NAME::RED_COLOR)
+Square::Square()
+    : program(ProgramContainer::getProgram(PROGRAM_NAME::RED_COLOR)),
+      vbo(VBOContainer::getVBO(VBO_NAME::SQUARE_VERTEX_ARRAY)),
+      ebo(VBOContainer::getVBO(VBO_NAME::SQUARE_VERTEX_INDEX))
 {
-  vbo.push_back(VBOContainer::getVBO(VBO_NAME::SQUARE_VERTEX_ARRAY));
-  vbo.push_back(VBOContainer::getVBO(VBO_NAME::SQUARE_VERTEX_INDEX));
-
   vao.use();
-  vbo[0]->use();
-  vbo[1]->use();
-  VAO::makePointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2);
+  vbo->use();
+  ebo->use();
+  VAO::makePointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Position2d));
 }
 
 Square::~Square()
@@ -20,9 +22,10 @@ Square::~Square()
   std::cout << "Square will be destroyed\n";
 }
 
-void Square::draw() const
+void Square::draw()
 {
-  Mesh::draw();
+  program->use();
+  vao.use();
   glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 }  // namespace gl

@@ -1,3 +1,4 @@
+#include <cassert>
 #include <iostream>
 #include "glfw.hpp"
 #include "GLFW/glfw3.h"
@@ -6,9 +7,8 @@ namespace gl {
 
 GLFW::GLFW(const GlfwConstructor& param)
 {
-  if (glfwInit() == 0) {
-    throw "Failed to initialize glfw\n";
-  }
+  int init = glfwInit();
+  assert(init != 0);
 
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, param.glfwVersionMajor);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, param.glfwVersionMinor);

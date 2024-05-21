@@ -2,9 +2,7 @@
 
 #include <array>
 #include <cstddef>
-#include <cstdint>
 #include <iostream>
-#include <vector>
 #include "glad/glad.h"
 #include "vao.hpp"
 
@@ -30,7 +28,7 @@ public:
   {
     vao.use();
     glBindBuffer(bufferType, ID);
-    glBufferData(bufferType, (data_size), data, usageType);
+    glBufferData(bufferType, data_size, data.data(), usageType);
     std::cout << "VBO has been created: " << ID << "\n";
   }
   template <typename T, size_t size>
@@ -39,18 +37,28 @@ public:
   {
     VAO::lose();
     glBindBuffer(bufferType, ID);
-    glBufferData(bufferType, (data_size), data.data(), usageType);
+    glBufferData(bufferType, data_size, data.data(), usageType);
     std::cout << "VBO has been created: " << ID << "\n";
   }
+  template <typename T>
+  VBO(const VAO& vao, const GLenum& bufferType, const T& data, const long& data_size, const GLenum& usageType)
+      : ID(genVBO()), bufferType(bufferType)
+  {
+    vao.use();
+    glBindBuffer(GL_UNIFORM_BUFFER, ID);
+    glBufferData(bufferType, data_size, data, usageType);
+    glBindBuffer(GL_UNIFORM_BUFFER, ID);
+    std::cout << "VBO has been created: " << ID << "\n";
+  }
+
   ~VBO();
 
+  GLuint getID() const;
   void use() const;
+  void use(GLuint bindingPoint) const;
+  void changeData(const long& offset, const long& size, const void* data);
 
-  static void lose()
-  {
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-  }
+  static void lose();
 
 private:
   static GLuint genVBO();

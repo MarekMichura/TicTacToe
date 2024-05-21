@@ -1,6 +1,7 @@
 #include "vboContainer.hpp"
 #include "squareData.h"
 #include "coloredSquareData.h"
+#include "timeVBO.hpp"
 #include "triangleData.h"
 #include "vbo.hpp"
 
@@ -8,6 +9,7 @@ namespace gl {
 VboMap VBOContainer::container{};
 
 const VboFunMap VBOContainer::containerFun{
+    {VBO_NAME::TIME, VBO_TIME},                                          //
     {VBO_NAME::TRIANGLE_VERTEX_ARRAY, VBO_TRIANGLE_POINTS},              //
     {VBO_NAME::SQUARE_VERTEX_ARRAY, VBO_SQUARE_POINTS},                  //
     {VBO_NAME::SQUARE_VERTEX_INDEX, VBO_SQUARE_INDEX},                   //

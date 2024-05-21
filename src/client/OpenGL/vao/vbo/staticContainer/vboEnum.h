@@ -2,6 +2,8 @@
 
 namespace gl {
 enum class VBO_NAME {
+  TIME,
+
   TRIANGLE_VERTEX_ARRAY,
 
   SQUARE_VERTEX_ARRAY,
