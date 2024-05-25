@@ -1,0 +1,5 @@
+add_library(${PROJECT_NAME}-debug STATIC my_log.h my_assert.h my_float_to_string.h)
+target_compile_options(${PROJECT_NAME}-debug PRIVATE ${FLAGS})
+target_include_directories(${PROJECT_NAME}-debug PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+target_compile_features(${PROJECT_NAME}-debug PRIVATE "cxx_std_23")
+set_target_properties(${PROJECT_NAME}-debug PROPERTIES LINKER_LANGUAGE CXX)

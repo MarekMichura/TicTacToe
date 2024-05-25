@@ -15,7 +15,7 @@ project("TicTacToe" "CXX")
 if(MSVC)
   set(FLAGS /Wall /Wpedantic /Wextra /WX /Wconversion)
 else()
-  set(FLAGS -Wall -pedantic -Wextra -Werror -Wconversion)
+  set(FLAGS -Wall -pedantic -Wextra -Werror -Wconversion -fno-exceptions)
 endif()
 
 include(FetchContent)
@@ -36,4 +36,5 @@ FetchContent_MakeAvailable(glad)
 # FetchContent_MakeAvailable(glm)
 
 # Include sub-projects.
-add_subdirectory("src/client")
+add_subdirectory("debug")
+add_subdirectory("client")

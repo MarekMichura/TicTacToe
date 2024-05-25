@@ -1,0 +1,158 @@
+#include <format>
+
+#include "keys.hpp"
+#include "my_log.h"
+
+namespace gl {
+
+KEY convertIntToKEY(int key)
+{
+  switch (key) {
+#define X(enum, name, value) \
+  case value:                \
+    return KEY::enum;
+    KEYS;
+#undef X
+    default:
+      Log(std::format("Failed to convert int {} to KEY", key));
+      abort();
+  }
+};
+
+KEY_MODE convertIntToKEY_MODE(int key)
+{
+  switch (key) {
+#define X(enum, name, value) \
+  case value:                \
+    return KEY_MODE::enum;
+    KEYS_MODE;
+#undef X
+    default:
+      Log(std::format("Failed to convert int {} to KEY", key));
+      abort();
+  }
+}
+
+KEY_STATUS convertIntToKEY_STATUS(int key)
+{
+  switch (key) {
+#define X(enum, name, value) \
+  case value:                \
+    return KEY_STATUS::enum;
+    KEYS_STATUS;
+#undef X
+    default:
+      Log(std::format("Failed to convert int {} to KEY", key));
+      abort();
+  }
+}
+
+#ifndef NDEBUG
+std::string convertKeyToString(KEY key)
+{
+  switch (key) {
+#define X(enum, name, value) \
+  case KEY::enum:            \
+    return name;
+    KEYS;
+#undef X
+    default:
+      abort();
+  }
+  abort();
+}
+std::string convertKeyStatusToString(KEY_STATUS key)
+{
+  switch (key) {
+#define X(enum, name, value) \
+  case KEY_STATUS::enum:     \
+    return name;
+    KEYS_STATUS;
+#undef X
+    default:
+      abort();
+  }
+  abort();
+}
+std::string convertKeyModeToString(KEY_MODE key)
+{
+  switch (key) {
+#define X(enum, name, value) \
+  case KEY_MODE::enum:       \
+    return name;
+    KEYS_MODE;
+#undef X
+    default:
+      abort();
+  }
+  abort();
+}
+
+#else
+std::string convertKeyToString(KEY /*unused*/)
+{
+  return "";
+}
+std::string convertKeyStatusToString(KEY_STATUS /*unused*/)
+{
+  return "";
+}
+std::string convertKeyModeToString(KEY_MODE /*unused*/)
+{
+  return "";
+}
+#endif  // DEBUG
+
+std::partial_ordering operator<=>(const KeyStruct& left, const KeyStruct& right)
+{
+  if (left.key > right.key) {
+    return std::partial_ordering::greater;
+  }
+  if (left.key < right.key) {
+    return std::partial_ordering::less;
+  }
+  if (left.status > right.status) {
+    return std::partial_ordering::greater;
+  }
+  if (left.status < right.status) {
+    return std::partial_ordering::less;
+  }
+  if (left.mode > right.mode) {
+    return std::partial_ordering::greater;
+  }
+  if (left.mode < right.mode) {
+    return std::partial_ordering::less;
+  }
+  return std::partial_ordering::equivalent;
+}
+bool operator<(const KeyStruct& left, const KeyStruct& right)
+{
+  if (left.key < right.key) {
+    return true;
+  }
+  if (left.mode < right.mode) {
+    return true;
+  }
+  if (left.status < right.status) {
+    return true;
+  }
+  return false;
+}
+bool operator>(const KeyStruct& left, const KeyStruct& right)
+{
+  if (left.key > right.key) {
+    return true;
+  }
+  if (left.mode > right.mode) {
+    return true;
+  }
+  if (left.status > right.status) {
+    return true;
+  }
+  return false;
+}
+bool operator==(const KeyStruct& left, const KeyStruct& right)
+{
+  return left.key == right.key && left.mode == right.mode && left.status == right.status;
+}
+}  // namespace gl

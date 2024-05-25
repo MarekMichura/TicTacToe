@@ -1,0 +1,1 @@
+target_include_directories(${PROJECT_NAME}-Client PUBLIC ${CMAKE_CURRENT_LIST_DIR})
