@@ -19,7 +19,6 @@ class KeysHandler {
 private:
   std::shared_ptr<Window> window;
   std::multimap<KeyStruct, weakFunction> eventMap{};
-  std::map<int, int> tmpMap{};
 
 public:
   KeysHandler(KeysHandler&&) = delete;

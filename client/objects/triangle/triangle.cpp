@@ -5,13 +5,12 @@
 #include "vao.hpp"
 
 namespace gl {
-Triangle::Triangle(std::weak_ptr<Engine> engine)
-    : program(engine.lock()->getShareProgram()->getProgram(SHARE_PROGRAM::RED)),
-      vbo(engine.lock()->getShareBuffer()->getBuffer(SHARE_BUFFER::TRIANGLE_VBO))
+Triangle::Triangle(std::shared_ptr<Engine> engine)
+    : program(engine->getShareProgram()->getProgram(SHARE_PROGRAM::RED)),
+      vbo(engine->getShareBuffer()->getBuffer(SHARE_BUFFER::TRIANGLE_VBO))
 {
   vao.use();
   vbo->use();
-
   VAO::createAttributePointerToSelectedVAO(0, 2, GL_VARIABLE_TYPE::FLOAT, false, sizeof(Position2D));
 }
 

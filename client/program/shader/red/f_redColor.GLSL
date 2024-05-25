@@ -14,5 +14,5 @@ void main()
   // if (dist < 100 && dist > 80)
   //   FragColor = vec4(1.f, 0.f, 0.f, .3f);
   // else
-  FragColor = vec4(1.f, 0.f, 0.f, 1.f);
+  FragColor = vec4(1.f, 0.f, 0.f, .1f);
 }

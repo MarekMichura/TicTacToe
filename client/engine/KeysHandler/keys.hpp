@@ -157,14 +157,13 @@ enum class KEY { KEYS };
 
 struct KeyStruct {
   KEY key;
-  KEY_STATUS status = KEY_STATUS::DOWN;
+  KEY_STATUS status = KEY_STATUS::PRESS;
   KEY_MODE mode = KEY_MODE::NONE;
+
+  std::strong_ordering operator<=>(const KeyStruct& other) const;
+  bool operator==(const KeyStruct& other) const;
 };
 
-std::partial_ordering operator<=>(const KeyStruct& left, const KeyStruct& right);
-bool operator<(const KeyStruct& left, const KeyStruct& right);
-bool operator>(const KeyStruct& left, const KeyStruct& right);
-bool operator==(const KeyStruct& left, const KeyStruct& right);
 
 KEY convertIntToKEY(int key);
 KEY_STATUS convertIntToKEY_STATUS(int key);

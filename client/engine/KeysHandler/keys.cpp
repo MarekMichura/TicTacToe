@@ -4,7 +4,10 @@
 #include "my_log.h"
 
 namespace gl {
-
+std::partial_ordering operator<=>(const KeyStruct& left, const KeyStruct& right)
+{
+  return std::partial_ordering();
+}
 KEY convertIntToKEY(int key)
 {
   switch (key) {
@@ -103,56 +106,41 @@ std::string convertKeyModeToString(KEY_MODE /*unused*/)
 }
 #endif  // DEBUG
 
-std::partial_ordering operator<=>(const KeyStruct& left, const KeyStruct& right)
+std::strong_ordering KeyStruct::operator<=>(const KeyStruct& other) const
 {
-  if (left.key > right.key) {
-    return std::partial_ordering::greater;
-  }
-  if (left.key < right.key) {
-    return std::partial_ordering::less;
-  }
-  if (left.status > right.status) {
-    return std::partial_ordering::greater;
-  }
-  if (left.status < right.status) {
-    return std::partial_ordering::less;
-  }
-  if (left.mode > right.mode) {
-    return std::partial_ordering::greater;
-  }
-  if (left.mode < right.mode) {
-    return std::partial_ordering::less;
-  }
-  return std::partial_ordering::equivalent;
+  if (auto cmp = key <=> other.key; cmp != 0)
+    return cmp;
+  if (auto cmp = mode <=> other.mode; cmp != 0)
+    return cmp;
+  return status <=> other.status;
 }
-bool operator<(const KeyStruct& left, const KeyStruct& right)
+
+bool KeyStruct::operator==(const KeyStruct& other) const
 {
-  if (left.key < right.key) {
-    return true;
-  }
-  if (left.mode < right.mode) {
-    return true;
-  }
-  if (left.status < right.status) {
-    return true;
-  }
-  return false;
+  return key == other.key && mode == other.mode && status == other.status;
 }
-bool operator>(const KeyStruct& left, const KeyStruct& right)
-{
-  if (left.key > right.key) {
-    return true;
-  }
-  if (left.mode > right.mode) {
-    return true;
-  }
-  if (left.status > right.status) {
-    return true;
-  }
-  return false;
-}
-bool operator==(const KeyStruct& left, const KeyStruct& right)
-{
-  return left.key == right.key && left.mode == right.mode && left.status == right.status;
-}
+// bool operator<(const KeyStruct& left, const KeyStruct& right)
+//{
+//  if (left.key != right.key) {
+//    return left.key < right.key;
+//  }
+//  if (left.mode != right.mode) {
+//    return left.mode < right.mode;
+//  }
+//  return left.status < right.status;
+//}
+//bool operator>(const KeyStruct& left, const KeyStruct& right)
+//{
+//  if (left.key != right.key) {
+//    return left.key > right.key;
+//  }
+//  if (left.mode != right.mode) {
+//    return left.mode > right.mode;
+//  }
+//  return left.status > right.status;
+//}
+//bool operator==(const KeyStruct& left, const KeyStruct& right)
+//{
+//  return left.key == right.key && left.mode == right.mode && left.status == right.status;
+//}
 }  // namespace gl

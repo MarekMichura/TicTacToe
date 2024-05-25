@@ -22,7 +22,7 @@ public:
   Triangle& operator=(const Triangle&) = delete;
   Triangle& operator=(Triangle&&) = delete;
 
-  Triangle(std::weak_ptr<Engine> engine);
+  Triangle(std::shared_ptr<Engine> engine);
 
   void draw();
 };

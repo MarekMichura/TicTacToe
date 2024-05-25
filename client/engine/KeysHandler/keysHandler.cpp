@@ -43,7 +43,7 @@ void KeysHandler::keyCallBack(const KeyStruct& key)
                   ));
 
   auto range = eventMap.equal_range(key);
-  for (auto it = range.first; it != range.second; it++) {
+  for (auto& it = range.first; it != range.second; it++) {
     if (auto element = it->second.lock()) {
       (*element)();
     }

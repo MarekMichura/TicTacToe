@@ -51,7 +51,7 @@ public:
   template <typename T>
   void insertObj()
   {
-    T* object = new T(engine);
+    T* object = new T(std::shared_ptr<Engine>(engine));
     auto shared = std::shared_ptr<T>(object);
 
     if constexpr (std::is_base_of<IUpdatable, T>::value) {

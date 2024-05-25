@@ -1,13 +1,24 @@
 #include "closeWindow.hpp"
+#include <triangle.hpp>
 
 namespace gl {
-CloseWindow::CloseWindow(std::weak_ptr<Engine> engine) : engine(engine)
+CloseWindow::CloseWindow(std::shared_ptr<Engine> engine) : engine(engine)
 {
-  auto keyHandler = engine.lock()->getKeyHandler();
-  fun = std::make_shared<function>([engine]() {
-    if (auto element = engine.lock())
+  auto weakEngine = std::weak_ptr<Engine>(engine);
+  auto keyHandler = engine->getKeyHandler();
+  closeWindow = std::make_shared<function>([weakEngine]() {
+    if (auto element = weakEngine.lock())
       element->getWindow()->close();
   });
-  keyHandler->addEvent(KeyStruct{KEY::Q}, fun);
+  creteNewTriangle = std::make_shared<function>([weakEngine]() {
+    if (auto element = weakEngine.lock())
+      element->insertObj<Triangle>();
+  });
+  keyHandler->addEvent(KeyStruct{KEY::Q}, closeWindow);
+  keyHandler->addEvent(KeyStruct{.key = KEY::W, .status = KEY_STATUS::DOWN}, creteNewTriangle);
+  keyHandler->addEvent(KeyStruct{.key = KEY::W, .status = KEY_STATUS::DOWN}, creteNewTriangle);
+  keyHandler->addEvent(KeyStruct{.key = KEY::W, .status = KEY_STATUS::DOWN}, creteNewTriangle);
+  keyHandler->addEvent(KeyStruct{.key = KEY::W, .status = KEY_STATUS::DOWN}, creteNewTriangle);
+  keyHandler->addEvent(KeyStruct{.key = KEY::W, .status = KEY_STATUS::DOWN}, creteNewTriangle);
 }
 }  // namespace gl

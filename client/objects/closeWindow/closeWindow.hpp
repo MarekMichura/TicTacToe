@@ -11,7 +11,8 @@ namespace gl {
 class CloseWindow : public virtual IGlObject {
 private:
   std::weak_ptr<Engine> engine;
-  std::shared_ptr<function> fun;
+  std::shared_ptr<function> closeWindow;
+  std::shared_ptr<function> creteNewTriangle;
 
 public:
   CloseWindow(const CloseWindow&) = delete;
@@ -19,6 +20,6 @@ public:
   CloseWindow& operator=(const CloseWindow&) = delete;
   CloseWindow& operator=(CloseWindow&&) = delete;
 
-  CloseWindow(std::weak_ptr<Engine> engine);
+  CloseWindow(std::shared_ptr<Engine> engine);
 };
 }  // namespace gl
