@@ -7,6 +7,8 @@
 #include "my_log.h"
 
 namespace gl {
+using uint = unsigned int;
+
 Shader::Shader(const std::string& source, const SHADER_TYPE type) : ID(glCreateShader((uint)type))
 {
   const auto* c_source = source.c_str();

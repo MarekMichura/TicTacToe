@@ -1,6 +1,6 @@
 #include <string>
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 #include "my_assert.h"
 #include "my_log.h"
@@ -17,7 +17,8 @@ GLFW::GLFW(GLFW_Constructor param) noexcept
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, param.versionMajorGLFW);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, param.versionMinorGLFW);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-  // glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, 1);
+  glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, 1);
+  glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
 
   Log("GLFW window hints has been set: ");
   Log("GLFW version: " + std::string(glfwGetVersionString()));

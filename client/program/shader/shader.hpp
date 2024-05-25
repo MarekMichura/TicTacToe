@@ -6,6 +6,7 @@
 #include "shaderType.h"
 
 namespace gl {
+using uint = unsigned int;
 class Shader {
 private:
   const uint ID;

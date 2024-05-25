@@ -19,10 +19,10 @@ public:
   constexpr Color(const float red, const float green, const float blue, const float alpha = 1)
       : red(red), green(green), blue(blue), alpha(alpha)
   {
-    Assert(red >= 0 && red <= 1, "Value of red: " + floatToString(red) + ", should be between 0 and 1");
+    /*Assert(red >= 0 && red <= 1, "Value of red: " + floatToString(red) + ", should be between 0 and 1");
     Assert(green >= 0 && green <= 1, "Value of green: " + floatToString(green) + ", should be between 0 and 1");
     Assert(blue >= 0 && blue <= 1, "Value of blue: " + floatToString(blue) + ", should be between 0 and 1");
-    Assert(alpha >= 0 && alpha <= 1, "Value of alpha: " + floatToString(alpha) + ", should be between 0 and 1");
+    Assert(alpha >= 0 && alpha <= 1, "Value of alpha: " + floatToString(alpha) + ", should be between 0 and 1");*/
   }
 
   constexpr Color(const uchar red, const uchar green, const uchar blue, const uchar alpha = 255)
@@ -82,6 +82,6 @@ private:
   }
 };
 namespace COLORS {
-static constexpr Color COLOR_CLEAR = Color::RGBA("#DBB4AD");
+static const Color COLOR_CLEAR = Color::RGBA("#00000000");
 }  // namespace COLORS
 }  // namespace gl

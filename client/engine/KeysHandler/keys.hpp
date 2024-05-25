@@ -1,7 +1,7 @@
 #include <compare>
 #include <string>
 
-#include "GLFW/glfw3.h"
+#include <GLFW/glfw3.h>
 
 #define KEYS                                                \
   X(SPACE, "Space", GLFW_KEY_SPACE)                         \

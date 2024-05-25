@@ -6,6 +6,7 @@
 #include "glTypes.h"
 
 namespace gl {
+using uint = unsigned int;
 class VAO {
 private:
   const uint ID;
@@ -20,7 +21,7 @@ public:
   ~VAO();
 
   void use() const;
-  static void createAttributePointerToSelectedVAO(  //
+  static void createAttributePointerToSelectedVAO(  
       const uint index,
       const int howManyVariables,
       const GL_VARIABLE_TYPE variableType,

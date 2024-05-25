@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "GLFW/glfw3.h"
+#include <GLFW/glfw3.h>
 
 #include "color.hpp"
 
@@ -9,7 +9,7 @@ namespace gl {
 struct WindowConstructor {
   static constexpr uint WINDOW_DEFAULT_WIDTH = 800;
   static constexpr uint WINDOW_DEFAULT_HEIGHT = 600;
-  static constexpr std::string WINDOW_DEFAULT_TITLE = "Window title";
+  static constexpr char WINDOW_DEFAULT_TITLE[] = "Window title";
 
   uint windowWidth = WINDOW_DEFAULT_WIDTH;
   uint windowHeight = WINDOW_DEFAULT_HEIGHT;

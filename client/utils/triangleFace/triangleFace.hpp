@@ -4,6 +4,7 @@
 #include <array>
 
 namespace gl {
+using uint = unsigned int;
 class TriangleFace {
 private:
   const std::array<uint, 3> vertexLP;

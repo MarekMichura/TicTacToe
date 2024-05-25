@@ -1,8 +1,8 @@
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
 #include <format>
 #include <string>
-
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
 
 #include "window.hpp"
 #include <GL/gl.h>

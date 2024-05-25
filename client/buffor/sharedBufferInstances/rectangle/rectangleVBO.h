@@ -4,6 +4,8 @@
 #include "buffer.hpp"
 
 namespace gl {
+using uint = unsigned int;
+
 enum class rectangleVboLp : uint {  //
   LeftTop = 0,
   rightTop = 1,

@@ -1,9 +1,9 @@
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 #include <cstdlib>
 #include <functional>
-#include <unistd.h>
+#include <format>
 #include <memory>
 
 #include "window.hpp"
@@ -28,7 +28,7 @@ Engine::Engine(EngineConstructor param)
   window->use();
   gladLoadGL();
   Window::setClearColor(COLORS::COLOR_CLEAR);
-  glfwSwapInterval(1);
+  glfwSwapInterval(0);
 
   glfwSetErrorCallback([](const int errorCode, const char* message) {
     Assert(false, std::format("GLFW error code: {}, message: {}", errorCode, message));

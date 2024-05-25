@@ -2,7 +2,7 @@
 
 #include <sys/types.h>
 
-#include "glad/glad.h"
+#include <glad/glad.h>
 
 namespace gl {
 enum class BUFFER_TYPE : uint {  //

@@ -6,6 +6,7 @@
 #define FpsDefine FPS fps
 
 namespace gl {
+using uint = unsigned int;
 class FPS {
 private:
   double lastTimeUpdate = 0;

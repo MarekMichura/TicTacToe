@@ -1,7 +1,7 @@
 #pragma once
 
 #include <sys/types.h>
-#include "glad/glad.h"
+#include <glad/glad.h>
 
 namespace gl {
 enum class PARAMETER_TYPE : uint {

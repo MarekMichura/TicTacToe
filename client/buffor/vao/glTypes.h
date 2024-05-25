@@ -1,10 +1,9 @@
 #pragma once
 
-#include <sys/types.h>
-
-#include "glad/glad.h"
+#include <glad/glad.h>
 
 namespace gl {
+using uint = unsigned int;
 enum class GL_VARIABLE_TYPE : uint {  //
   BYTE = GL_BYTE,
   UBYTE = GL_UNSIGNED_BYTE,

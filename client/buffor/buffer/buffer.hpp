@@ -1,13 +1,16 @@
 #pragma once
 
 #include <memory>
+#include <format>
 
 #include "vao.hpp"
 #include "bufferTypes.h"
 #include "bufferUsage.h"
+#include "my_log.h"
 
 namespace gl {
 using VAO_ptr = std::shared_ptr<VAO>;
+using uint = unsigned int;
 
 class Buffer {
 private:
@@ -25,7 +28,15 @@ public:
          const long dataSize,
          const T data,
          const BUFFER_USAGE usage,
-         const VAO_ptr vao = nullptr);
+         const VAO_ptr vao = nullptr)
+      : ID(generateBuffer()), type(type)
+  {
+    (vao) ? vao->use() : VAO::unUse();
+
+    glBindBuffer((uint)type, ID);
+    glBufferData((uint)type, dataSize, data, (uint)usage);
+    Log(std::format("Created buffer id: {}", ID));
+  }
   ~Buffer();
 
   void use() const;
@@ -34,5 +45,6 @@ public:
   void updateData(const T newData, const long newDataSize, const long offsetData) const;
 
   static void unUse(const BUFFER_TYPE type);
+  static uint generateBuffer();
 };
 }  // namespace gl

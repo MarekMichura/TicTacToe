@@ -1,10 +1,11 @@
-#include "glad/glad.h"
+#include <glad/glad.h>
 
 #include "vao.hpp"
 #include <format>
 #include "my_log.h"
 
 namespace gl {
+using uint = unsigned int;
 static uint generateVAO()
 {
   uint vao = 0;

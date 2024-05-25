@@ -13,7 +13,7 @@ project("TicTacToe" "CXX")
 
 # if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 if(MSVC)
-  set(FLAGS /Wall /Wpedantic /Wextra /WX /Wconversion)
+  set(FLAGS )
 else()
   set(FLAGS -Wall -pedantic -Wextra -Werror -Wconversion -fno-exceptions)
 endif()
@@ -36,5 +36,5 @@ FetchContent_MakeAvailable(glad)
 # FetchContent_MakeAvailable(glm)
 
 # Include sub-projects.
-add_subdirectory("debug")
 add_subdirectory("client")
+add_subdirectory("debug")

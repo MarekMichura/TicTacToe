@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+using uint = unsigned int;
 
 constexpr char DECIMAL = 10;
 constexpr char CHAR_0 = 48;

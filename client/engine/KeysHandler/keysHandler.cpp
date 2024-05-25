@@ -1,10 +1,11 @@
+#include <GLFW/glfw3.h>
+
 #include <format>
 #include <functional>
 #include <map>
 #include <memory>
 
 #include "keysHandler.hpp"
-#include "GLFW/glfw3.h"
 #include "keys.hpp"
 #include "my_assert.h"
 #include "my_log.h"
