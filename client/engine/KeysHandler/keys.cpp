@@ -4,10 +4,6 @@
 #include "my_log.h"
 
 namespace gl {
-std::partial_ordering operator<=>(const KeyStruct& left, const KeyStruct& right)
-{
-  return std::partial_ordering();
-}
 KEY convertIntToKEY(int key)
 {
   switch (key) {
@@ -108,10 +104,12 @@ std::string convertKeyModeToString(KEY_MODE /*unused*/)
 
 std::strong_ordering KeyStruct::operator<=>(const KeyStruct& other) const
 {
-  if (auto cmp = key <=> other.key; cmp != 0)
+  if (auto cmp = key <=> other.key; cmp != 0) {
     return cmp;
-  if (auto cmp = mode <=> other.mode; cmp != 0)
+  }
+  if (auto cmp = mode <=> other.mode; cmp != 0) {
     return cmp;
+  }
   return status <=> other.status;
 }
 
@@ -129,7 +127,7 @@ bool KeyStruct::operator==(const KeyStruct& other) const
 //  }
 //  return left.status < right.status;
 //}
-//bool operator>(const KeyStruct& left, const KeyStruct& right)
+// bool operator>(const KeyStruct& left, const KeyStruct& right)
 //{
 //  if (left.key != right.key) {
 //    return left.key > right.key;
@@ -139,7 +137,7 @@ bool KeyStruct::operator==(const KeyStruct& other) const
 //  }
 //  return left.status > right.status;
 //}
-//bool operator==(const KeyStruct& left, const KeyStruct& right)
+// bool operator==(const KeyStruct& left, const KeyStruct& right)
 //{
 //  return left.key == right.key && left.mode == right.mode && left.status == right.status;
 //}

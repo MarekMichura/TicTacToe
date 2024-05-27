@@ -1,4 +1,3 @@
-#include "my_log.h";
 #include <iostream>
 
 void log(const std::string& log)

@@ -1,9 +1,10 @@
-#include <cstdlib>
 #include <format>
 #include <memory>
 
 #include "program.hpp"
+#include "programs.hpp"
 #include "shareProgramContainer.hpp"
+
 #include "shareProgram.h"
 #include "my_assert.h"
 
@@ -11,14 +12,15 @@ namespace gl {
 
 static std::shared_ptr<Program> staticBufferFactory(SHARE_PROGRAM type)
 {
-  return std::make_shared<Program>("v_redColor.GLSL", "f_redColor.GLSL");
   switch (type) {
     case SHARE_PROGRAM::COLORED:
+      return Programs::getProgramColored();
     case SHARE_PROGRAM::RED:
-      break;
+      return Programs::getProgramRed();
+    default:
+      Assert(false, std::format("Shared program id: {}, doesn't exist", (uint)type));
+      abort();
   }
-  Assert(false, std::format("Shared program id: {}, doesn't exist", (uint)type));
-  abort();
 }
 
 std::shared_ptr<Program> ShareProgramContainer::getProgram(SHARE_PROGRAM type)

@@ -3,6 +3,7 @@
 #include <memory>
 #include <vector>
 
+#include "buffer.hpp"
 #include "my_log.h"
 #include "shareProgramContainer.hpp"
 #include "shareBufferContainer.hpp"
@@ -30,6 +31,7 @@ private:
   std::vector<std::weak_ptr<IUpdatable>> updateList;
   std::vector<std::shared_ptr<IGlObject>> objectList;
 
+  std::shared_ptr<Buffer> time;
   Engine(EngineConstructor param);
 
 public:

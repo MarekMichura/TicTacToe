@@ -164,7 +164,6 @@ struct KeyStruct {
   bool operator==(const KeyStruct& other) const;
 };
 
-
 KEY convertIntToKEY(int key);
 KEY_STATUS convertIntToKEY_STATUS(int key);
 KEY_MODE convertIntToKEY_MODE(int key);

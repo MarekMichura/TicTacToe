@@ -4,14 +4,11 @@
 #include "buffer.hpp"
 
 namespace gl {
-using uint = unsigned int;
+using uchar = unsigned char;
 
-enum class rectangleVboLp : uint {  //
-  LeftTop = 0,
-  rightTop = 1,
-  rightBottom = 2,
-  leftBottom = 3
-};
+enum class rectangleVboLp { LeftTop, rightTop, rightBottom, leftBottom };
 
 std::shared_ptr<Buffer> rectangleVBO();
+
+std::shared_ptr<Buffer> rectangleVBOWithColor();
 }  // namespace gl

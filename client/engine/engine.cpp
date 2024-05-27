@@ -6,6 +6,7 @@
 #include <format>
 #include <memory>
 
+#include "timeUBO.h"
 #include "window.hpp"
 #include "engine.hpp"
 #include "color.hpp"
@@ -19,7 +20,7 @@ namespace gl {
 std::shared_ptr<std::function<void()>> tmp;
 
 Engine::Engine(EngineConstructor param)
-    : glfw(param),
+    : glfw((GLFW_Constructor)param),
       window(std::make_shared<Window>(param)),
       keyHandler(std::make_shared<KeysHandler>(window)),
       shareBuffer(std::make_shared<ShareBufferContainer>()),
@@ -39,6 +40,7 @@ Engine::Engine(EngineConstructor param)
   glad_glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+  time = shareBuffer->getBuffer(SHARE_BUFFER::TIME);
   Log("Engine has been created");
 }
 
@@ -50,9 +52,13 @@ Engine::~Engine()
 void Engine::mainLoop()
 {
   FpsDefine;
+  double prevTime = 0;
 
   while (window->shouldClose()) {
     double currentTime = glfwGetTime();
+    auto bufferTime = std::make_unique<TimeUBO>(currentTime, currentTime - prevTime);
+    time->updateData(bufferTime.get(), sizeof(TimeUBO), 0);
+    prevTime = currentTime;
     FpsMeasure(currentTime);
 
     Window::clearSelectedWindow();

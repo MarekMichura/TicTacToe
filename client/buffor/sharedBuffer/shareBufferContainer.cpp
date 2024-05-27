@@ -1,9 +1,12 @@
 #include <format>
 
 #include "shareBufferContainer.hpp"
+
 #include "rectangleEBO.h"
 #include "rectangleVBO.h"
+#include "shareBuffer.h"
 #include "triangleVBO.h"
+#include "timeUBO.h"
 #include "my_assert.h"
 
 namespace gl {
@@ -11,10 +14,14 @@ namespace gl {
 static std::shared_ptr<Buffer> staticBufferFactory(SHARE_BUFFER type)
 {
   switch (type) {
+    case SHARE_BUFFER::TIME:
+      return timeUBO();
     case SHARE_BUFFER::TRIANGLE_VBO:
       return triangleVBO();
     case SHARE_BUFFER::RECTANGLE_VBO:
       return rectangleVBO();
+    case SHARE_BUFFER::RECTANGLE_VBO_COLOR:
+      return rectangleVBOWithColor();
     case SHARE_BUFFER::RECTANGLE_EBO:
       return rectangleEBO();
   }

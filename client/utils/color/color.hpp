@@ -83,5 +83,9 @@ private:
 };
 namespace COLORS {
 static const Color COLOR_CLEAR = Color::RGBA("#00000000");
+static const Color COLOR_RED = Color::RGBA("#ff0000");
+static const Color COLOR_GREEN = Color::RGBA("#00ff00");
+static const Color COLOR_BLUE = Color::RGBA("#0000ff");
+static const Color COLOR_WHITE = Color::RGBA("#ffffff");
 }  // namespace COLORS
 }  // namespace gl

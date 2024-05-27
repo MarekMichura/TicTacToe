@@ -11,7 +11,7 @@ Triangle::Triangle(std::shared_ptr<Engine> engine)
 {
   vao.use();
   vbo->use();
-  VAO::createAttributePointerToSelectedVAO(0, 2, GL_VARIABLE_TYPE::FLOAT, false, sizeof(Position2D));
+  VAO::createAttributePointerToSelectedVAO(0, 2, GL_VARIABLE_TYPE::FLOAT, 0u, sizeof(Position2D));
 }
 
 void Triangle::draw()

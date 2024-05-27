@@ -42,7 +42,11 @@ public:
   void use() const;
   uint getID() const;
   template <typename T>
-  void updateData(const T newData, const long newDataSize, const long offsetData) const;
+  void updateData(const T newData, const long newDataSize, const long offsetData) const
+  {
+    use();
+    glBufferSubData((uint)type, offsetData, newDataSize, newData);
+  }
 
   static void unUse(const BUFFER_TYPE type);
   static uint generateBuffer();

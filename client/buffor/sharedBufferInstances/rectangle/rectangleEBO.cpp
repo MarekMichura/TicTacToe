@@ -11,8 +11,12 @@
 namespace gl {
 
 const static std::array<TriangleFace, 2> rectangleEboData = {
-    TriangleFace((uint)rectangleVboLp::LeftTop, (uint)rectangleVboLp::rightTop, (uint)rectangleVboLp::rightBottom),   //
-    TriangleFace((uint)rectangleVboLp::LeftTop, (uint)rectangleVboLp::rightBottom, (uint)rectangleVboLp::leftBottom)  //
+    TriangleFace((uint)rectangleVboLp::LeftTop,
+                 (uint)rectangleVboLp::rightBottom,
+                 (uint)rectangleVboLp::leftBottom),  //
+    TriangleFace((uint)rectangleVboLp::LeftTop,
+                 (uint)rectangleVboLp::rightTop,
+                 (uint)rectangleVboLp::rightBottom),  //
 };
 
 std::shared_ptr<Buffer> rectangleEBO()

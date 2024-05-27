@@ -23,7 +23,8 @@ public:
   Triangle& operator=(Triangle&&) = delete;
 
   Triangle(std::shared_ptr<Engine> engine);
+  virtual ~Triangle() = default;
 
-  void draw();
+  void draw() override;
 };
 }  // namespace gl

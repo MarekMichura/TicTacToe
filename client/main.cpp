@@ -1,5 +1,6 @@
 #include "engine.hpp"
 #include "closeWindow.hpp"
+#include "rectangle.hpp"
 #include "triangle.hpp"
 
 #ifdef _WIN32
@@ -8,7 +9,6 @@ __declspec(dllexport) unsigned long NvOptimusEnablement = 0x00000001;
 }
 #endif
 #ifdef __linux__
-#include <stdio.h>
 
 __attribute__((constructor)) void enable_nv_optimus()
 {
@@ -24,7 +24,8 @@ int main()
   auto engine = gl::Engine::GenerateEngine();
 
   engine->insertObj<gl::CloseWindow>();
-  engine->insertObj<gl::Triangle>();
+  // engine->insertObj<gl::Triangle>();
+  engine->insertObj<gl::Rectangle>();
 
   engine->mainLoop();
   return 0;

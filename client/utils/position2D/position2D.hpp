@@ -17,5 +17,7 @@ public:
 
   float getX() const;
   float geyY() const;
+
+  Position2D copy() const;
 };
 }  // namespace gl

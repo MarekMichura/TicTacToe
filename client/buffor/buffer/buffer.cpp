@@ -51,11 +51,4 @@ uint Buffer::getID() const
   return ID;
 }
 
-template void Buffer::updateData(const void*, const long, const long) const;
-template <typename T>
-void Buffer::updateData(const T newData, const long newDataSize, const long offsetData) const
-{
-  use();
-  glBufferSubData((uint)type, offsetData, newDataSize, newData);
-}
 };  // namespace gl
